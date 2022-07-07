@@ -36,7 +36,6 @@ export const getStaticProps = async (context: GetStaticPropsContext<Params>) => 
 type Props = InferGetStaticPropsType<typeof getStaticProps>;
 
 const BlogDetail: NextPage<Props> = ({ blog }) => {
-  console.log(`details${blog}`);
   return (
     <main>
       <h1>{blog.title}</h1>
