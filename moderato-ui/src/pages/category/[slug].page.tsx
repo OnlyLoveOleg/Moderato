@@ -16,21 +16,20 @@ interface PathParams extends ParsedUrlQuery {
 }
 
 export const getStaticPaths: GetStaticPaths<PathParams> = async () => {
-  const blogList = await HomeAPI.fetchBlogList();
-  const paths = blogList.map((blog) => ({
-    params: { slug: blog.id },
+  const categoryList = await HomeAPI.fetchCategoryList();
+  const paths = categoryList.map((category) => ({
+    params: { slug: category.id },
   }));
   return { paths, fallback: false };
 };
 
-// データをテンプレートに受け渡す部分の処理を記述します
 export const getStaticProps = async (context: GetStaticPropsContext<PathParams>) => {
   const id = context.params?.slug!;
-  const blogDetail = await HomeAPI.fetchBlogDetail(id);
+  const categoryDetail = await HomeAPI.fetchCategoryDetail(id);
 
   return {
     props: {
-      detail: blogDetail,
+      detail: categoryDetail,
     },
   };
 };
@@ -40,13 +39,7 @@ type Props = InferGetStaticPropsType<typeof getStaticProps>;
 const BlogDetail: NextPage<Props> = ({ detail }) => {
   return (
     <main>
-      <h1>{detail?.title}</h1>
-      {/* <p>{detail.publishedAt}</p> */}
-      <div
-        dangerouslySetInnerHTML={{
-          __html: `${detail?.content}`,
-        }}
-      />
+      <h1>{detail.name}</h1>
     </main>
   );
 };
