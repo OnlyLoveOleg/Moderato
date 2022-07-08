@@ -15,3 +15,8 @@
 ## Blog Layout.
 
 [参考URL](https://blog.hubspot.com/blog/tabid/6307/bid/34143/12-inspiring-examples-of-beautiful-blog-homepage-designs.aspx)
+
+## Deploy
+
+mainにmergeしたらdeploy
+blog apiを更新したらdeploy
