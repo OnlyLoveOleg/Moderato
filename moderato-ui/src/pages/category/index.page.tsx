@@ -6,25 +6,25 @@ import { HomeAPI } from '@/libs/apis';
 // これは、ビルド時にサーバー側で呼ばれる関数です。この部分の処理は最終的にバンドルJSに含まれません。
 // ビルド時にデータを取得し、静的なHTMLを出力するために必要です。
 export const getStaticProps = async (context: GetStaticPropsContext) => {
-  const blog = await HomeAPI.fetchBlogList();
+  const categories = await HomeAPI.fetchCategoryList();
 
   return {
     props: {
-      blog,
+      categories,
     },
   };
 };
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>;
 
-const About: NextPage<Props> = ({ blog }) => {
+const Category: NextPage<Props> = ({ categories }) => {
   return (
     <div>
       <ul>
-        {blog.map((blog) => (
-          <li key={blog.id}>
-            <Link href={`/blog/${blog.id}`}>
-              <a>{blog.title}</a>
+        {categories.map((category) => (
+          <li key={category.id}>
+            <Link href={`/category/${category.id}`}>
+              <a>{category.name}</a>
             </Link>
           </li>
         ))}
@@ -33,4 +33,4 @@ const About: NextPage<Props> = ({ blog }) => {
   );
 };
 
-export default About;
+export default Category;

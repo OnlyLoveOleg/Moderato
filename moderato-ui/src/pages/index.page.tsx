@@ -1,7 +1,4 @@
 import type { NextPage, InferGetStaticPropsType, GetStaticPropsContext } from 'next';
-
-import Head from 'next/head';
-import Image from 'next/image';
 import Link from 'next/link';
 
 import { HomeAPI } from '@/libs/apis';
@@ -24,7 +21,7 @@ const Home: NextPage<Props> = ({ blog }) => {
   return (
     <div>
       <ul>
-        {blog.map((blog: any) => (
+        {blog.map((blog) => (
           <li key={blog.id}>
             <Link href={`/blog/${blog.id}`}>
               <a>{blog.title}</a>

@@ -1,8 +1,10 @@
-export interface Category {
-  id: string;
-  createdAt: Date;
-  updatedAt: Date;
-  publishedAt: Date;
-  revisedAt: Date;
+import { BaseModel } from '@/types/base';
+
+interface ParentCategory extends BaseModel {
   name: string;
+}
+
+export interface Category extends BaseModel {
+  name: string;
+  parent?: ParentCategory;
 }
