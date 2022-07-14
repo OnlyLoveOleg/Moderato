@@ -1,6 +1,6 @@
 import { NextPage, GetStaticPropsContext, InferGetStaticPropsType, GetStaticPaths } from 'next';
 import { ParsedUrlQuery } from 'node:querystring';
-
+import styled from 'styled-components';
 import { HomeAPI } from '@/libs/apis';
 
 // 静的生成のためのパスを指定します
@@ -10,6 +10,13 @@ import { HomeAPI } from '@/libs/apis';
 // blogの量が多くなるとbuildに時間がかかるのでは？
 
 // 参考 https://maku.blog/p/rdq3ep2/
+
+const TestDiv = styled.div`
+  width: 100px;
+  height: 100px;
+  color: ${(props): string => props.theme.white};
+  background: ${(props): string => props.theme.violet022};
+`;
 
 interface PathParams extends ParsedUrlQuery {
   slug: string;
@@ -40,6 +47,7 @@ type Props = InferGetStaticPropsType<typeof getStaticProps>;
 const BlogDetail: NextPage<Props> = ({ detail }) => {
   return (
     <main>
+      <TestDiv>test</TestDiv>
       <h1>{detail?.title}</h1>
       {/* <p>{detail.publishedAt}</p> */}
       <div

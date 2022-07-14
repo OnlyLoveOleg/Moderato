@@ -2,12 +2,10 @@
 const nextConfig = {
   reactStrictMode: true,
   pageExtensions: ['page.tsx', 'page.ts'],
-  removeConsole: true,
-  styledComponents: {
-    displayName: true,
-    ssr: true,
-    cssProp: true,
-  }
+  compiler: {
+    styledComponents: true,
+    removeConsole: true,
+  }, 
 };
 
 module.exports = nextConfig;

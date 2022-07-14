@@ -17,6 +17,8 @@ export const getStaticProps = async (context: GetStaticPropsContext) => {
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>;
 
+/** sortとか必要 */
+
 const Category: NextPage<Props> = ({ categories }) => {
   return (
     <div>
