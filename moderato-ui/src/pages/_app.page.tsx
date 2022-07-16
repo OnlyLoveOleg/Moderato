@@ -6,7 +6,7 @@ import { ThemeProvider, createGlobalStyle } from 'styled-components';
 // css reset
 import '@/styles/sass/reset.scss';
 // css base
-// import '@/styles/sass/base.scss';
+import '@/styles/sass/global.scss';
 
 // other file
 import * as Theme from '@/styles/styled-components/global';

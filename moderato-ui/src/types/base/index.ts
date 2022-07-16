@@ -1,1 +1,1 @@
-export * from './_baseModel';
+export * from './_baseCMS';

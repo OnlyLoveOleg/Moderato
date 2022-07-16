@@ -12,6 +12,7 @@
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
+    // see https://techblg.app/articles/how-to-fix-isolatedmodules-error/
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,

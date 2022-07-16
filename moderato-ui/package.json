@@ -2,6 +2,10 @@
   "name": "moderato-ui",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "^14.17.0",
+    "npm": "^6.14.13"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -10,7 +14,10 @@
     "lint:fix": "yarn lint --fix",
     "format": "prettier --write './**/*.{js,jsx,ts,tsx,json}'",
     "test": "jest",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "analyze": "ANALYZE=true next build",
+    "encrypt:local": "ts-node --files ./env/encrypt local",
+    "encrypt:prd": "ts-node --files ./env/encrypt.ts prd"
   },
   "dependencies": {
     "microcms-js-sdk": "^2.0.0",
@@ -21,11 +28,13 @@
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.16.4",
+    "@types/crypto-js": "^4.1.1",
     "@types/node": "18.0.0",
     "@types/react": "18.0.14",
     "@types/react-dom": "18.0.5",
     "@types/styled-components": "^5.1.25",
     "babel-loader": "^8.2.5",
+    "crypto-js": "^4.1.1",
     "eslint": "8.18.0",
     "eslint-config-next": "12.1.6",
     "jest": "^28.1.0",
