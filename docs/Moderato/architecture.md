@@ -20,3 +20,7 @@
 
 mainにmergeしたらdeploy
 blog apiを更新したらdeploy
+
+## CMS
+
+[Document](https://document.microcms.io/content-api/get-list-contents)

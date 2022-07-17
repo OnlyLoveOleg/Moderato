@@ -20,21 +20,10 @@ html {
   }
 }
 
-// @media (max-width: 1440px) {
-//   html {
-//     font-size: calc((100vw - 320px) / 140 + 16px);
-//   }
-// }
-
-// @media (max-width: 428px) {
-//   html {
-//     font-size: 18px;
-//   }
-// }
 
 body {
   font-size: 1rem;
-  // font-family: ;
+  font-family: 'Playfair Display', serif;
 }
 
 html,
@@ -43,5 +32,6 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
+  height: 100%;
 }
 

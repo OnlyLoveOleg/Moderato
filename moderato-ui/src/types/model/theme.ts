@@ -1,3 +1,8 @@
+/**
+ * HEX 透過表
+ * @see https://qiita.com/CUTBOSS/items/6166cf79b9f18c45a010
+ */
+
 export interface Theme {
   /**
    * color name

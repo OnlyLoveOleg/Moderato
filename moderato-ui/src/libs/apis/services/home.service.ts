@@ -10,14 +10,20 @@ export class HomeService extends BaseService implements IHomeService {
   public fetchBlogDetail = async (
     contentId: string,
   ): Promise<(MicroCMSObjectContent & Blog) | null> => {
-    console.log(`contentsid${contentId}`);
     return await this.mCMSClient.getListDetail({ endpoint: this.blogEndPoint, contentId });
   };
 
   // TODO: これ自動でsortされているのか？例えば最新とか。されないっぽいな
-  public fetchBlogList = async (): Promise<Blog[]> => {
-    const limit = 10;
-    const data = await this.mCMSClient.getList({ endpoint: this.blogEndPoint, queries: {} });
+  public fetchBlogList = async (
+    queries: MicroCMSQueries = {},
+    limit: number = 10, // 制限（defaultで5M超えたらerror）
+    offset: number = 0, // 何件目から取得するか
+  ): Promise<Blog[]> => {
+    // const limit = 10;
+    const data = await this.mCMSClient.getList({
+      endpoint: this.blogEndPoint,
+      queries: { ...queries, limit, offset },
+    });
     return data.contents;
   };
 
@@ -30,6 +36,7 @@ export class HomeService extends BaseService implements IHomeService {
   };
 
   public fetchLatestBlogList = async (): Promise<Blog[]> => {
+    // もちろん降順
     // 最新は4件で十分
     const limit = 4;
     const data = await this.mCMSClient.getList({
@@ -43,8 +50,15 @@ export class HomeService extends BaseService implements IHomeService {
     return await this.mCMSClient.getListDetail({ endpoint: this.categoryEndPoint, contentId });
   };
 
-  public fetchCategoryList = async (): Promise<Category[]> => {
-    const data = await this.mCMSClient.getList({ endpoint: this.categoryEndPoint });
+  public fetchCategoryList = async (
+    queries: MicroCMSQueries = {},
+    limit: number = 10, // 制限（defaultで5M超えたらerror）
+    offset: number = 0, // 何件目から取得するか
+  ): Promise<Category[]> => {
+    const data = await this.mCMSClient.getList({
+      endpoint: this.categoryEndPoint,
+      queries: { ...queries, limit, offset },
+    });
     return data.contents;
   };
 }

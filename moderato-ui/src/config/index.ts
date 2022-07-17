@@ -1,5 +1,5 @@
+import mediaQuery from 'styled-media-query';
 import { BaseConfig } from './_base';
-
 /** index.tsを綺麗にする。 */
 
 /** App System config */
@@ -18,3 +18,30 @@ export class AppConfig extends BaseConfig {
 
 /** systemのconst的なもの */
 export class AppConstraints extends BaseConfig {}
+
+/** App media */
+export class AppMedia extends BaseConfig {
+  /**
+   * @see https://github.com/morajabi/styled-media-query
+   * default 設定
+   * {
+   *    huge: '1440px',
+   *    large: '1170px',
+   *    medium: '768px',
+   *    small: '450px',
+   * }
+   */
+
+  // @ts-ignore しないといけない（なぜ？）
+  private MediaPC = mediaQuery.greaterThan('769px');
+  // @ts-ignore
+  private MediaSP = mediaQuery.lessThan('768px');
+
+  public get mediaPC() {
+    return this.MediaPC;
+  }
+
+  public get mediaSP() {
+    return this.MediaSP;
+  }
+}

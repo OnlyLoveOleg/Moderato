@@ -14,7 +14,13 @@ type LayoutProps = {
   readonly children: React.ReactNode;
 };
 
-const Wrapper = styled.div``;
+const StyledLayout = styled.div`
+  width: 100%;
+`;
+
+const StyledMain = styled.main`
+  color: #000;
+`;
 
 export const Layout: NextComponentType<NextPageContext, null, LayoutProps> = ({
   showFooter = true,
@@ -40,10 +46,10 @@ export const Layout: NextComponentType<NextPageContext, null, LayoutProps> = ({
   };
 
   return (
-    <Wrapper>
-      <Header onClickMenuButton={() => onClickOpenMenu()}></Header>
-      <main>{children}</main>
+    <StyledLayout>
+      <Header onClickMenuButton={() => onClickOpenMenu()} />
+      <StyledMain>{children}</StyledMain>
       {showFooter && <Footer />}
-    </Wrapper>
+    </StyledLayout>
   );
 };

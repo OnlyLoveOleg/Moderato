@@ -1,28 +1,31 @@
 import { NextPage } from 'next';
 import type { AppProps } from 'next/app';
-// lib
 import { ThemeProvider, createGlobalStyle } from 'styled-components';
 
 // css reset
 import '@/styles/sass/reset.scss';
 // css base
 import '@/styles/sass/global.scss';
-
-// other file
+// css
 import * as Theme from '@/styles/styled-components/global';
-import '../styles/globals.css';
-import { mediaPc } from '@/libs/media/mediaQuery';
+// config
+import { AppMedia } from '@/config';
+const mediaConfig = new AppMedia();
+
+// import dynamic from "next/dynamic";
+// Alertコンポーネントはクライアントサイドでのみレンダリングされる
+// const Alert = dynamic(() => import("../components/Alert"), { ssr: false });
 
 const GlobalStyle = createGlobalStyle`
   .pc {
-    display: none;
-    ${mediaPc`
-      display: block;
+    display: block;
+    ${mediaConfig.mediaSP`
+      display: none;
     `}
   }
   .sp {
     display: block;
-    ${mediaPc`
+    ${mediaConfig.mediaPC`
       display: none;
     `}
   }

@@ -8,6 +8,9 @@
 # testing
 /coverage
 
+## test for jest report
+report.json
+
 # next.js
 /.next/
 /out/

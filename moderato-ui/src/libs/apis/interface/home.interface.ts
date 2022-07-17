@@ -1,4 +1,4 @@
-import { MicroCMSObjectContent, MicroCMSListResponse, MicroCMSQueries } from 'microcms-js-sdk';
+import { MicroCMSObjectContent, MicroCMSQueries } from 'microcms-js-sdk';
 import { Blog, Category } from '@/types/model';
 
 export interface IHomeService {
@@ -11,9 +11,9 @@ export interface IHomeService {
    * @desc ブログをリスト取得する
    * TODO:（これpagerとかに変えた方がいいかも）
    */
-  fetchBlogList(): Promise<Blog[]>;
+  fetchBlogList(queries?: MicroCMSQueries, limit?: number, offset?: number): Promise<Blog[]>;
   /**
-   * @desc オススメのblogを取得する
+   * @desc オススメのblogを取得する（作成順）
    */
   fetchRecommendBlogList(): Promise<Blog[]>;
   /**
@@ -29,5 +29,9 @@ export interface IHomeService {
   /**
    * @desc カテゴリー一覧を取得する
    */
-  fetchCategoryList(): Promise<Category[]>;
+  fetchCategoryList(
+    queries?: MicroCMSQueries,
+    limit?: number,
+    offset?: number,
+  ): Promise<Category[]>;
 }

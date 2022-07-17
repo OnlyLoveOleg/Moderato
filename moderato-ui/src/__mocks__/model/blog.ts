@@ -22,6 +22,13 @@ export const mockDesignBlog: Blog = {
   recommend: true,
 };
 
+export const mockDesignBlogList: Blog[] = [
+  mockDesignBlog,
+  mockDesignBlog,
+  mockDesignBlog,
+  mockDesignBlog,
+];
+
 export const mockFrontBlog: Blog = {
   ..._baseCMS,
   title: 'mock front',
@@ -32,6 +39,13 @@ export const mockFrontBlog: Blog = {
   thumbnail: mockThumbnail,
   recommend: true,
 };
+
+export const mockFrontBlogList: Blog[] = [
+  mockFrontBlog,
+  mockFrontBlog,
+  mockFrontBlog,
+  mockFrontBlog,
+];
 
 export const mockServerBlog: Blog = {
   ..._baseCMS,
@@ -44,6 +58,13 @@ export const mockServerBlog: Blog = {
   recommend: true,
 };
 
+export const mockServerBlogList: Blog[] = [
+  mockServerBlog,
+  mockServerBlog,
+  mockServerBlog,
+  mockServerBlog,
+];
+
 export const mockInfraBlog: Blog = {
   ..._baseCMS,
   title: 'mock infra',
@@ -54,3 +75,10 @@ export const mockInfraBlog: Blog = {
   thumbnail: mockThumbnail,
   recommend: true,
 };
+
+export const mockInfraBlogList: Blog[] = [
+  mockInfraBlog,
+  mockInfraBlog,
+  mockInfraBlog,
+  mockInfraBlog,
+];

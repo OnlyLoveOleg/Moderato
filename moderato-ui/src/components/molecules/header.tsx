@@ -1,29 +1,34 @@
 import { NextComponentType, NextPageContext } from 'next';
 import styled from 'styled-components';
 
-import { Button } from '@/components/atoms';
+import { Hamburger } from '@/components/atoms/button';
 
 type Props = {
   className?: string;
   onClickMenuButton: () => void;
 };
 
-const StyledHeader = styled.header`
+const Wrapper = styled.header`
   position: fixed;
   width: 100%;
   height: 80px;
-  background: ${(props): string => props.theme.gradationPink01};
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 0 0 5.7%;
+  background: transparent;
   z-index: 10;
+`;
+
+const ItemWrap = styled.div``;
+
+const Title = styled.h1`
+  font-size: 2rem;
 `;
 
 export const Header: NextComponentType<NextPageContext, null, Props> = () => {
   return (
-    <StyledHeader>
-      <Button></Button>
-    </StyledHeader>
+    <Wrapper>
+      <ItemWrap>
+        <Title>naohito-T.blog.com</Title>
+        <Hamburger />
+      </ItemWrap>
+    </Wrapper>
   );
 };

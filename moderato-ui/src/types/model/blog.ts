@@ -15,15 +15,15 @@ export interface Blog extends BaseCMS {
    */
   content: string;
   /**
-   * ブログのカテゴリー
+   * おすすめ
    */
-  category: Category;
+  recommend: boolean;
   /**
    * サムネイル
    */
   thumbnail: Thumbnail;
   /**
-   * おすすめ
+   * ブログのカテゴリー
    */
-  recommend: boolean;
+  category: Category;
 }

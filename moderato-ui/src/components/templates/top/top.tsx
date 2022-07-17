@@ -3,7 +3,11 @@ import styled from 'styled-components';
 
 import { Blog } from '@/types/model';
 
-const Wrapper = styled.div``;
+const StyledSection = styled.section`
+  height: 100vh;
+  width: 100%;
+  background: ${(props): string => props.theme.violet022};
+`;
 
 const TestDiv = styled.div`
   width: 100px;
@@ -30,8 +34,7 @@ export const Top: NextComponentType<NextPageContext, null, TopProps> = ({
   infraBlogs,
 }) => {
   return (
-    <Wrapper>
-      <TestDiv>test</TestDiv>
+    <StyledSection>
       {/* <div>
         <ul>
           {blog.map((blog) => (
@@ -43,6 +46,6 @@ export const Top: NextComponentType<NextPageContext, null, TopProps> = ({
           ))}
         </ul>
       </div> */}
-    </Wrapper>
+    </StyledSection>
   );
 };

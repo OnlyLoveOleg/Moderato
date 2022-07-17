@@ -5,7 +5,12 @@ export default class MyDocument extends Document {
   render(): JSX.Element {
     return (
       <Html lang='ja'>
-        <Head></Head>
+        <Head>
+          <link
+            href='https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;900&display=swap'
+            rel='stylesheet'
+          />
+        </Head>
         <body>
           <noscript>JavaScriptを有効にしてください。.</noscript>
           <Main />
