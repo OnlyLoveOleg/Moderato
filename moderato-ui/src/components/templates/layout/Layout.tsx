@@ -2,7 +2,7 @@ import { ReactElement, useState } from 'react';
 import { NextComponentType, NextPageContext } from 'next';
 import { useRouter } from 'next/router';
 
-import { Footer, Header } from '@/components/molecules';
+import { Header } from '@/components/molecules';
 import styled from 'styled-components';
 
 // type LayoutProps = Required<{
@@ -49,7 +49,7 @@ export const Layout: NextComponentType<NextPageContext, null, LayoutProps> = ({
     <StyledLayout>
       <Header onClickMenuButton={() => onClickOpenMenu()} />
       <StyledMain>{children}</StyledMain>
-      {showFooter && <Footer />}
+      {/* {showFooter && <Footer />} */}
     </StyledLayout>
   );
 };
