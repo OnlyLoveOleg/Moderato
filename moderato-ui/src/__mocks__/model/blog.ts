@@ -1,5 +1,5 @@
 import { Blog } from '@/types/model';
-import { _baseCMS } from './_baseCMS';
+import { baseCMS } from './_baseCMS';
 import {
   mockDesignCategory,
   mockFrontCategory,
@@ -12,7 +12,7 @@ import { mockThumbnail } from './thumbnail';
  * mock design blog
  */
 export const mockDesignBlog: Blog = {
-  ..._baseCMS,
+  ...baseCMS,
   title: 'mock design',
   subTitle: 'mock design subTitle',
   content:
@@ -30,7 +30,7 @@ export const mockDesignBlogList: Blog[] = [
 ];
 
 export const mockFrontBlog: Blog = {
-  ..._baseCMS,
+  ...baseCMS,
   title: 'mock front',
   subTitle: 'mock front subTitle',
   content:
@@ -48,7 +48,7 @@ export const mockFrontBlogList: Blog[] = [
 ];
 
 export const mockServerBlog: Blog = {
-  ..._baseCMS,
+  ...baseCMS,
   title: 'mock server',
   subTitle: 'mock server subTitle',
   content:
@@ -66,7 +66,7 @@ export const mockServerBlogList: Blog[] = [
 ];
 
 export const mockInfraBlog: Blog = {
-  ..._baseCMS,
+  ...baseCMS,
   title: 'mock infra',
   subTitle: 'mock infra subTitle',
   content:

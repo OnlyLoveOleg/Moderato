@@ -6,14 +6,7 @@ import { Blog } from '@/types/model';
 const StyledSection = styled.section`
   height: 100vh;
   width: 100%;
-  background: ${(props): string => props.theme.violet022};
-`;
-
-const TestDiv = styled.div`
-  width: 100px;
-  height: 100px;
-  color: ${(props): string => props.theme.white};
-  background: ${(props): string => props.theme.violet022};
+  background: ${(props): string => props.theme.white};
 `;
 
 type TopProps = {
@@ -25,14 +18,16 @@ type TopProps = {
   infraBlogs: Blog[];
 };
 
-export const Top: NextComponentType<NextPageContext, null, TopProps> = ({
-  recommendBlogs,
-  latestBlogs,
-  designBlogs,
-  frontBlogs,
-  serverBlogs,
-  infraBlogs,
-}) => {
+export const Top: NextComponentType<NextPageContext, null, TopProps> = (
+  {
+    // recommendBlogs,
+    // latestBlogs,
+    // designBlogs,
+    // frontBlogs,
+    // serverBlogs,
+    // infraBlogs,
+  },
+) => {
   return (
     <StyledSection>
       {/* <div>

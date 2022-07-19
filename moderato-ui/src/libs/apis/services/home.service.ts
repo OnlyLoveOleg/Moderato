@@ -1,16 +1,18 @@
-import { MicroCMSObjectContent, MicroCMSListResponse, MicroCMSQueries } from 'microcms-js-sdk';
+import { MicroCMSObjectContent, MicroCMSQueries } from 'microcms-js-sdk';
 import { BaseService } from './_base.service';
 import { Blog, Category } from '@/types/model';
 import { IHomeService } from '@/libs/apis/interface';
 
 export class HomeService extends BaseService implements IHomeService {
   private blogEndPoint = 'blogs';
+
   private categoryEndPoint = 'categories';
 
   public fetchBlogDetail = async (
     contentId: string,
   ): Promise<(MicroCMSObjectContent & Blog) | null> => {
-    return await this.mCMSClient.getListDetail({ endpoint: this.blogEndPoint, contentId });
+    const data = await this.mCMSClient.getListDetail({ endpoint: this.blogEndPoint, contentId });
+    return data;
   };
 
   // TODO: これ自動でsortされているのか？例えば最新とか。されないっぽいな
@@ -47,7 +49,11 @@ export class HomeService extends BaseService implements IHomeService {
   };
 
   public fetchCategoryDetail = async (contentId: string): Promise<Category> => {
-    return await this.mCMSClient.getListDetail({ endpoint: this.categoryEndPoint, contentId });
+    const data = await this.mCMSClient.getListDetail({
+      endpoint: this.categoryEndPoint,
+      contentId,
+    });
+    return data;
   };
 
   public fetchCategoryList = async (

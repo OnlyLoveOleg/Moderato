@@ -2,7 +2,7 @@ import { createClient } from 'microcms-js-sdk';
 import { HomeService } from './services/home.service';
 
 export { HomeService } from '@/libs/apis/services';
-export type mCMSClient = typeof client;
+export type CMSClient = typeof client;
 
 // TODO: ここをconfigから取得する
 export const client = createClient({

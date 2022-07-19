@@ -5,6 +5,7 @@ import { BaseConfig } from './_base';
 /** App System config */
 export class AppConfig extends BaseConfig {
   private MICRO_CMS_DOMAIN = process.env.MICRO_CMS_DOMAIN ?? '';
+
   private MICRO_CMS_API_KEY = process.env.MICRO_CMS_API_KEY ?? '';
 
   public get microCMSDomain(): string {
@@ -34,6 +35,7 @@ export class AppMedia extends BaseConfig {
 
   // @ts-ignore しないといけない（なぜ？）
   private MediaPC = mediaQuery.greaterThan('769px');
+
   // @ts-ignore
   private MediaSP = mediaQuery.lessThan('768px');
 

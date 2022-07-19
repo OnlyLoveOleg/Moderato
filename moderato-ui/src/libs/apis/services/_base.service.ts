@@ -1,9 +1,9 @@
-import type { mCMSClient } from '@/libs/apis';
+import type { CMSClient } from '@/libs/apis';
 export abstract class BaseService {
   // microCMS client
-  protected readonly mCMSClient: mCMSClient;
+  protected readonly mCMSClient: CMSClient;
 
-  constructor(client: mCMSClient) {
+  constructor(client: CMSClient) {
     this.mCMSClient = client;
   }
 }

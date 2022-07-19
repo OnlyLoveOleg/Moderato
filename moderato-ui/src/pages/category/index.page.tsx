@@ -10,6 +10,7 @@ import { HomeAPI } from '@/libs/apis';
  */
 
 export const getStaticProps = async (context: GetStaticPropsContext) => {
+  console.log(context);
   const categories = await HomeAPI.fetchCategoryList();
 
   return {

@@ -1,8 +1,8 @@
-import { ReactElement, useState } from 'react';
+// import { useState } from 'react';
 import { NextComponentType, NextPageContext } from 'next';
-import { useRouter } from 'next/router';
+// import { useRouter } from 'next/router';
 
-import { Header } from '@/components/molecules';
+// import { Header } from '@/components/molecules';
 import styled from 'styled-components';
 
 // type LayoutProps = Required<{
@@ -23,31 +23,30 @@ const StyledMain = styled.main`
 `;
 
 export const Layout: NextComponentType<NextPageContext, null, LayoutProps> = ({
-  showFooter = true,
+  // showFooter = true,
   children,
 }) => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const router = useRouter();
+  // const [isMenuOpen, setIsMenuOpen] = useState(false);
+  // const router = useRouter();
 
-  const onClickOpenMenu = () => {
-    setIsMenuOpen(true);
-  };
+  // const onClickOpenMenu = () => {
+  //   setIsMenuOpen(true);
+  // };
 
-  const onClickCloseMenu = () => {
-    setIsMenuOpen(false);
-  };
+  // const onClickCloseMenu = () => {
+  //   setIsMenuOpen(false);
+  // };
 
   // パスが同一であればmenuを閉じる
-
-  const isTopPage = (href: string) => {
-    if (router.pathname === href) {
-      onClickCloseMenu();
-    }
-  };
+  // const isTopPage = (href: string) => {
+  //   if (router.pathname === href) {
+  //     onClickCloseMenu();
+  //   }
+  // };
 
   return (
     <StyledLayout>
-      <Header onClickMenuButton={() => onClickOpenMenu()} />
+      {/* <Header onClickMenuButton={() => onClickOpenMenu()} /> */}
       <StyledMain>{children}</StyledMain>
       {/* {showFooter && <Footer />} */}
     </StyledLayout>

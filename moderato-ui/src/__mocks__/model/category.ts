@@ -1,5 +1,5 @@
-import { Category, ParentCategory } from '@/types/model';
-import { _baseCMS } from './_baseCMS';
+import { Category } from '@/types/model';
+import { baseCMS } from './_baseCMS';
 import {
   mockTechTheme,
   mockDesignTheme,
@@ -15,7 +15,7 @@ import {
  */
 
 export const mockTechCategory: Category = {
-  ..._baseCMS,
+  ...baseCMS,
   name: 'tech',
   theme: mockTechTheme,
 };
@@ -28,7 +28,7 @@ export const mockTechCategory: Category = {
  * mock design category
  */
 export const mockDesignCategory: Category = {
-  ..._baseCMS,
+  ...baseCMS,
   name: 'front',
   theme: mockDesignTheme,
   parent: mockTechCategory,
@@ -38,7 +38,7 @@ export const mockDesignCategory: Category = {
  * mock front category
  */
 export const mockFrontCategory: Category = {
-  ..._baseCMS,
+  ...baseCMS,
   name: 'front',
   theme: mockFrontTheme,
   parent: mockTechCategory,
@@ -48,7 +48,7 @@ export const mockFrontCategory: Category = {
  * mock server category
  */
 export const mockServerCategory: Category = {
-  ..._baseCMS,
+  ...baseCMS,
   name: 'server',
   theme: mockServerTheme,
   parent: mockTechCategory,
@@ -58,7 +58,7 @@ export const mockServerCategory: Category = {
  * mock infra category
  */
 export const mockInfraCategory: Category = {
-  ..._baseCMS,
+  ...baseCMS,
   name: 'infra',
   theme: mockInfraTheme,
   parent: mockTechCategory,

@@ -8,7 +8,7 @@ const nextConfig = {
     styledComponents: true,
     // TODO: 以下を開発環境では削除しない
     // removeConsole: true,
-  }, 
+  },
 };
 
 module.exports = nextConfig;

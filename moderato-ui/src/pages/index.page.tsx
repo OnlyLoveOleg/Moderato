@@ -1,6 +1,4 @@
 import type { NextPage, InferGetStaticPropsType, GetStaticPropsContext } from 'next';
-import Link from 'next/link';
-import styled from 'styled-components';
 import { HomeAPI } from '@/libs/apis';
 // components
 import { Top as TopTpl, Layout } from '@/components/templates';
@@ -16,7 +14,8 @@ import {
 // ビルド時にデータを取得し、静的なHTMLを出力するために必要です。
 export const getStaticProps = async (context: GetStaticPropsContext) => {
   // カテゴリidが必要。
-  const categoryIds = await HomeAPI.fetchCategoryList();
+  // const categoryIds = await HomeAPI.fetchCategoryList();
+  console.log(context);
 
   const [recommendBlogs, latestBlogs] = await Promise.all([
     HomeAPI.fetchRecommendBlogList(),
