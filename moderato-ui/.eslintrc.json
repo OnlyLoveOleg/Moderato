@@ -1,3 +1,7 @@
+// https://zenn.dev/ken505/articles/c049a64f3a2989
 {
-  "extends": "next/core-web-vitals"
+  "extends": ["eslint-config-airbnb-typescript", "next", "next/core-web-vitals", "prettier"],
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  }
 }

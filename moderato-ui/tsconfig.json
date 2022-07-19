@@ -12,6 +12,7 @@
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
+    // see https://techblg.app/articles/how-to-fix-isolatedmodules-error/
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
@@ -20,6 +21,7 @@
       "~/*": ["./*"],
       "@/*": ["./*"]
     },
+    "types": ["@types/jest", "@testing-library/jest-dom"]
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]

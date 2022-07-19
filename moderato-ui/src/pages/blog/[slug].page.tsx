@@ -1,6 +1,6 @@
 import { NextPage, GetStaticPropsContext, InferGetStaticPropsType, GetStaticPaths } from 'next';
 import { ParsedUrlQuery } from 'node:querystring';
-
+// import styled from 'styled-components';
 import { HomeAPI } from '@/libs/apis';
 
 // 静的生成のためのパスを指定します
@@ -10,6 +10,13 @@ import { HomeAPI } from '@/libs/apis';
 // blogの量が多くなるとbuildに時間がかかるのでは？
 
 // 参考 https://maku.blog/p/rdq3ep2/
+
+// const TestDiv = styled.div`
+//   width: 100px;
+//   height: 100px;
+//   color: ${(props): string => props.theme.white};
+//   background: ${(props): string => props.theme.white};
+// `;
 
 interface PathParams extends ParsedUrlQuery {
   slug: string;

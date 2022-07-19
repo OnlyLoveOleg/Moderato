@@ -3,9 +3,14 @@ import Link from 'next/link';
 
 import { HomeAPI } from '@/libs/apis';
 
-// これは、ビルド時にサーバー側で呼ばれる関数です。この部分の処理は最終的にバンドルJSに含まれません。
-// ビルド時にデータを取得し、静的なHTMLを出力するために必要です。
+/**
+ * @desc カテゴリー一覧 page
+ * categoryに紐づくblogを見せるpage
+ * category の コンテンツidが必要でありそれでblog 一覧を取得する
+ */
+
 export const getStaticProps = async (context: GetStaticPropsContext) => {
+  console.log(context);
   const categories = await HomeAPI.fetchCategoryList();
 
   return {
@@ -16,6 +21,8 @@ export const getStaticProps = async (context: GetStaticPropsContext) => {
 };
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>;
+
+/** sortとか必要 */
 
 const Category: NextPage<Props> = ({ categories }) => {
   return (
