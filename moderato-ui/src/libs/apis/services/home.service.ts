@@ -21,7 +21,6 @@ export class HomeService extends BaseService implements IHomeService {
     limit: number = 10, // 制限（defaultで5M超えたらerror）
     offset: number = 0, // 何件目から取得するか
   ): Promise<Blog[]> => {
-    // const limit = 10;
     const data = await this.mCMSClient.getList({
       endpoint: this.blogEndPoint,
       queries: { ...queries, limit, offset },
