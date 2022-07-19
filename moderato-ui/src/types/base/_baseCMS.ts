@@ -4,8 +4,8 @@
  */
 export interface BaseCMS {
   id: string;
-  createdAt: Date;
-  updatedAt: Date;
-  publishedAt: Date;
-  revisedAt: Date;
+  createdAt: number;
+  updatedAt: number;
+  publishedAt: number;
+  revisedAt: number;
 }

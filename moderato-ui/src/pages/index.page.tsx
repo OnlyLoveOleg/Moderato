@@ -26,16 +26,14 @@ export const getStaticProps = async (context: GetStaticPropsContext) => {
     // HomeAPI.fetchBlogList({ filters: `category[equals]` }),
   ]);
 
-  console.log(`ddd${JSON.stringify(recommendBlogs)}`);
-  console.log(`aaa${JSON.stringify(latestBlogs)}`);
   return {
     props: {
       recommendBlogs,
       latestBlogs,
-      // designBlogs,
-      // frontBlogs,
-      // serverBlogs,
-      // infraBlogs,
+      designBlogs: mockDesignBlogList,
+      frontBlogs: mockFrontBlogList,
+      serverBlogs: mockServerBlogList,
+      infraBlogs: mockInfraBlogList,
     },
   };
 };
@@ -45,20 +43,20 @@ type Props = InferGetStaticPropsType<typeof getStaticProps>;
 const Top: NextPage<Props> = ({
   recommendBlogs,
   latestBlogs,
-  // designBlogs,
-  // frontBlogs,
-  // serverBlogs,
-  // infraBlogs,
+  designBlogs,
+  frontBlogs,
+  serverBlogs,
+  infraBlogs,
 }) => {
   return (
     <Layout>
       <TopTpl
         recommendBlogs={recommendBlogs}
         latestBlogs={latestBlogs}
-        designBlogs={mockDesignBlogList}
-        frontBlogs={mockFrontBlogList}
-        serverBlogs={mockServerBlogList}
-        infraBlogs={mockInfraBlogList}
+        designBlogs={designBlogs}
+        frontBlogs={frontBlogs}
+        serverBlogs={serverBlogs}
+        infraBlogs={infraBlogs}
       />
     </Layout>
   );

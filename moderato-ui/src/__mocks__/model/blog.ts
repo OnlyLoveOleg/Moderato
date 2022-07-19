@@ -5,7 +5,7 @@ import {
   mockFrontCategory,
   mockServerCategory,
   mockInfraCategory,
-} from '@/__mocks__/model';
+} from './category'; // え、同階層のpath alias（@）はダメなの？
 import { mockThumbnail } from './thumbnail';
 
 /**

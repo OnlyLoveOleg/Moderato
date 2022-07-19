@@ -44,4 +44,4 @@ jobs:
           working-directory: moderato-ui
           github-token: ${{ secrets.GITHUB_TOKEN }}
           package-manager: yarn
-          test-script: yarn jest:coverage
+          test-script: yarn test:coverage
