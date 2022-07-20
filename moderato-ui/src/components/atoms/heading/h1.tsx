@@ -1,7 +1,7 @@
 import { NextComponentType, NextPageContext } from 'next';
 import styled from 'styled-components';
 
-type Props = {
+export type Props = {
   text: string;
   size: string;
 };

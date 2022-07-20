@@ -8,7 +8,7 @@ import {
   mockFrontBlogList,
   mockServerBlogList,
   mockInfraBlogList,
-} from '@/__mocks__/model';
+} from '@/tests/__mocks__/model';
 
 // これは、ビルド時にサーバー側で呼ばれる関数です。この部分の処理は最終的にバンドルJSに含まれません。
 // ビルド時にデータを取得し、静的なHTMLを出力するために必要です。

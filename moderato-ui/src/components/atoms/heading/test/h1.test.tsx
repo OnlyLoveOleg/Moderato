@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
-import renderer from 'react-test-renderer';
 import { H1 } from '@/components/atoms/heading';
+import { screenShot } from '@/tests/helper';
 
 describe('Heading H1 test', () => {
   test('Check H1 view', () => {
@@ -9,8 +9,7 @@ describe('Heading H1 test', () => {
   });
 
   test('Check snapshot', () => {
-    const component = renderer.create(<H1 text='naohito-T' size='48px' />);
-    const tree = component.toJSON();
+    const tree = screenShot(<H1 text='naohito-T' size='48px' />);
     expect(tree).toMatchSnapshot();
   });
 });
