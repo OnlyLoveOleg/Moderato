@@ -29,12 +29,27 @@ blog apiを更新したらdeploy
 
 [参考URL](https://scrapbox.io/takoba/React%E3%82%92%E6%8E%A1%E7%94%A8%E3%81%97%E3%81%9FTypeScript%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B%E5%91%BD%E5%90%8D%E8%A6%8F%E5%89%87)
 
-Reactではコンポーネントは UpperCamel でないとコンパイルエラーになる
-lowerCamel は元々 JS の開発での慣習
+ReactではコンポーネントはUpperCamelでないとコンパイルエラーになる
+lowerCamelは元々 JSの開発での慣習
 
 以上を踏まえて以下とする
 
 ```sh
-pages/** # lowerCamel
+pages/** # lowerCamel（http pathの概念を適用）
 components/** # UpperCamel
+```
+
+## テストツール
+
+```sh
+jest # Storybook と Jest を利用した Snapshot test や Unit test を実行する
+@testing-library/react # Storybook と react-testing-library を利用した Unit test を実行する
+@testing-library/user-event # Unit test でクリックや文字入力などユーザーインタラクションを実行する
+@testing-library/jest-dom # Jest カスタムマッチャーを利用可能にする
+@testing-library/react-hooks # Unit Test で React Hooks を利用可能にする
+@storybook/addon-storyshots # 各 Story で Snapshot test を作成する
+react-test-renderer # Snapshot test 実行時に snapshot を出力する
+@storybook/testing-react # jest のテストコード中に Story を利用可能にする
+@storybook/testing-library # storybook のコード中に userEvent や screen など react-testing-library の機能 を利用可能にする
+identity-obj-proxy # CSS Modules をモックする
 ```

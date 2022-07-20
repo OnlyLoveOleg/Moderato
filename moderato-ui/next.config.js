@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  swcMinify: true, // added
   // @see pageExtensions https://zenn.dev/uttk/articles/d6be1c224494cb
   pageExtensions: ['page.tsx', 'page.ts'],
   optimizeFonts: true,

@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Heading H2 test. Check snapshot 1`] = `
+<h2
+  className="sc-d39acd45-0 ixWMvX"
+  size="32px"
+>
+  naohito-T
+</h2>
+`;
