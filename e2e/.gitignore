@@ -1,0 +1,15 @@
+# packages
+node_modules
+
+# env
+env/decrypt/*
+
+# log
+*.log
+
+# playwright
+test-results
+playwright-report
+
+# image
+e2e/src/tests/image/*.png

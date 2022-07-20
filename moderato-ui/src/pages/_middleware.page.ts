@@ -7,6 +7,11 @@ import type { NextFetchEvent, NextRequest } from 'next/server';
  *
  * これを一番見ろ
  * @see https://zenn.dev/catnose99/articles/0df722f3f025bb
+ *
+ * TODO:
+ * 1. F5 アタック対策（メチャクチャお金請求されるぞ）
+ * 2. キャッシュ対策？
+ * 3. GAで分析か？
  */
 export const middleware = (req: NextRequest, ev: NextFetchEvent) => {
   // return new Response('Hello, world!');
