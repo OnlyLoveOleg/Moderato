@@ -53,3 +53,7 @@ react-test-renderer # Snapshot test 実行時に snapshot を出力する
 @storybook/testing-library # storybook のコード中に userEvent や screen など react-testing-library の機能 を利用可能にする
 identity-obj-proxy # CSS Modules をモックする
 ```
+
+## API key 隠蔽
+
+https://zenn.dev/mr_ozin/articles/17920ca403b8af
