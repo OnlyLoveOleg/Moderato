@@ -34,6 +34,11 @@ jobs:
             ${{ runner.os }}-yarn-
             ${{ runner.os }}-
 
+      - name: front Node setup
+        working-directory: moderato-ui
+        run: |
+          yarn
+
       - name: E2E test.
         working-directory: e2e
         run: |
