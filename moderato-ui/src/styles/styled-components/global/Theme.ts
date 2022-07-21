@@ -3,6 +3,7 @@ import 'styled-components';
 export const theme = {
   black: '#000',
   white: '#fff',
+  descColor: '#FFFFDD',
   techCategoryColor6: '#6127DB',
   techCategoryColor8: '#6127DBA6',
   designCategoryColor6: '#B51792',

@@ -2,7 +2,7 @@
 import { NextComponentType, NextPageContext } from 'next';
 // import { useRouter } from 'next/router';
 
-// import { Header } from '@/components/molecules';
+import { Footer } from '@/components/molecules';
 import styled from 'styled-components';
 
 // type LayoutProps = Required<{
@@ -19,11 +19,11 @@ const StyledLayout = styled.div`
 `;
 
 const StyledMain = styled.main`
-  color: #000;
+  /* color: #000; */
 `;
 
 export const Layout: NextComponentType<NextPageContext, null, LayoutProps> = ({
-  // showFooter = true,
+  showFooter = true,
   children,
 }) => {
   // const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -48,7 +48,7 @@ export const Layout: NextComponentType<NextPageContext, null, LayoutProps> = ({
     <StyledLayout>
       {/* <Header onClickMenuButton={() => onClickOpenMenu()} /> */}
       <StyledMain>{children}</StyledMain>
-      {/* {showFooter && <Footer />} */}
+      {showFooter && <Footer />}
     </StyledLayout>
   );
 };

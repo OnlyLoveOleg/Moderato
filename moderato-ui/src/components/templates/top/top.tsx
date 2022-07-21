@@ -3,10 +3,17 @@ import styled from 'styled-components';
 
 import { Blog } from '@/types/model';
 
-const StyledSection = styled.section`
-  height: 100vh;
+/** 全体の設定 */
+const Wrapper = styled.div`
   width: 100%;
   background: ${(props): string => props.theme.white};
+`;
+
+const TopSection = styled.section`
+  height: 100vh;
+  background-image: url('/images/top_section.png');
+  background-position: center;
+  background-size: cover;
 `;
 
 type TopProps = {
@@ -29,7 +36,8 @@ export const Top: NextComponentType<NextPageContext, null, TopProps> = (
   },
 ) => {
   return (
-    <StyledSection>
+    <Wrapper>
+      <TopSection />
       <p>Top 画面</p>
       {/* <div>
         <ul>
@@ -42,6 +50,6 @@ export const Top: NextComponentType<NextPageContext, null, TopProps> = (
           ))}
         </ul>
       </div> */}
-    </StyledSection>
+    </Wrapper>
   );
 };
