@@ -30,6 +30,7 @@ export const Top: NextComponentType<NextPageContext, null, TopProps> = (
 ) => {
   return (
     <StyledSection>
+      <p>Top 画面</p>
       {/* <div>
         <ul>
           {blog.map((blog) => (

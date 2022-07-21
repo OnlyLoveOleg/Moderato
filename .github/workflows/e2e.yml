@@ -1,4 +1,4 @@
-name: Frontend CI Jest
+name: E2E CI Playwright
 
 on:
   pull_request:
@@ -6,9 +6,7 @@ on:
       - "moderato-ui/**"
 
 jobs:
-  jest:
-    # プロセスが終了しない限り、デフォルトで job は6時間実行される。
-    # そのため普段の平均実行時間を実行ログから調べ、最大値以上を設定値の目安にする
+  playwright:
     timeout-minutes: 10
 
     strategy:
@@ -36,16 +34,23 @@ jobs:
             ${{ runner.os }}-yarn-
             ${{ runner.os }}-
 
-      - name: jest test
+      - name: Frontend Node setup
         working-directory: moderato-ui
         run: |
           yarn
-          yarn test
 
-      # ガバレッジレポートを出力する
-      - uses: artiomtr/jest-coverage-report-action@v2.0-rc.3
+      - name: E2E test.
+        working-directory: e2e
+        run: |
+          yarn 
+          yarn test
+        # envはこのアクション（name: E2E test.）のみで有効
+        env:
+          LOCAL_PUBLIC_URL: http://localhost:3000
+
+      - uses: actions/upload-artifact@v2
+        if: always()
         with:
-          working-directory: moderato-ui
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          package-manager: yarn
-          test-script: yarn test:coverage
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 30

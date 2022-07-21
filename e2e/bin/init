@@ -1,0 +1,29 @@
+#!/bin/bash
+set -euo pipefail
+
+trap catch ERR 
+trap finally EXIT
+
+function catch {
+  echo 'catch: error init scripts.'
+}
+
+function finally {
+  echo 'done.'
+}
+
+# @Desc どこから実行されても確実にフロントdirでyarnをするスクリプト
+# @Auther naohito-T
+
+# 一階層上
+# PATH_DIR_PARENT="$(dirname "$(cd "$(dirname "${BASH_SOURCE:-$0}")" && pwd)")"
+
+# 二階層上
+PATH_DIR_GRAND_PARENT="$(dirname "$(cd "$(dirname "$(cd "$(dirname "${BASH_SOURCE:-$0}")")")" && pwd)")"
+
+echo "$PATH_DIR_GRAND_PARENT"
+
+cd "$PATH_DIR_GRAND_PARENT/moderato-ui"
+
+yarn dev
+
