@@ -1,4 +1,4 @@
-name: E2E CI
+name: E2E CI Playwright
 
 on:
   pull_request:
@@ -7,7 +7,7 @@ on:
 
 jobs:
   playwright:
-    timeout-minutes: 60
+    timeout-minutes: 10
 
     strategy:
       matrix:
@@ -34,7 +34,7 @@ jobs:
             ${{ runner.os }}-yarn-
             ${{ runner.os }}-
 
-      - name: front Node setup
+      - name: Frontend Node setup
         working-directory: moderato-ui
         run: |
           yarn
@@ -44,6 +44,9 @@ jobs:
         run: |
           yarn 
           yarn test
+        # envはこのアクション（name: E2E test.）のみで有効
+        env:
+          LOCAL_PUBLIC_URL: http://localhost:3000
 
       - uses: actions/upload-artifact@v2
         if: always()

@@ -7,6 +7,10 @@ on:
 
 jobs:
   jest:
+    # プロセスが終了しない限り、デフォルトで job は6時間実行される。
+    # そのため普段の平均実行時間を実行ログから調べ、最大値以上を設定値の目安にする
+    timeout-minutes: 10
+
     strategy:
       matrix:
         node-version: [14.17.0]

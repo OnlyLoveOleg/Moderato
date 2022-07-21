@@ -7,6 +7,7 @@ on:
 
 jobs:
   eslint:
+    timeout-minutes: 5
     # https://ema-hiro.hatenablog.com/entry/2020/12/15/123210
     # 変数置換できるようになるため一つのファイルで複数version対応可能になる
     strategy:
