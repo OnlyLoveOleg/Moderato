@@ -1,11 +1,15 @@
 import { NextComponentType, NextPageContext } from 'next';
 import styled from 'styled-components';
 
+import { H1 } from '@/components/atoms/heading';
 import { Hamburger } from '@/components/atoms/button';
+
+import { displayFlex } from '@/styles/styled-components/global';
 
 type Props = {
   className?: string;
-  onClickMenuButton: () => void;
+  isOpen: boolean;
+  onToggleMenu: () => void;
 };
 
 const Wrapper = styled.header`
@@ -14,20 +18,33 @@ const Wrapper = styled.header`
   height: 80px;
   background: transparent;
   z-index: 10;
+  user-select: none;
 `;
 
-const ItemWrap = styled.div``;
+const ItemWrap = styled.div`
+  ${displayFlex({ justifyContent: 'space-between', flexDirection: 'row' })};
+  height: 100%;
 
-const Title = styled.h1`
-  font-size: 2rem;
+  .logo-title {
+    color: ${(props) => props.theme.white};
+    margin: 0 1rem;
+  }
+
+  .hamburger {
+    margin: 0 1rem;
+  }
 `;
 
-export const Header: NextComponentType<NextPageContext, null, Props> = () => {
+export const Header: NextComponentType<NextPageContext, null, Props> = ({
+  className = '',
+  isOpen,
+  onToggleMenu,
+}) => {
   return (
-    <Wrapper>
+    <Wrapper className={className} data-testid='header'>
       <ItemWrap>
-        <Title>naohito-T.blog.com</Title>
-        <Hamburger />
+        <H1 className='logo-title' text='naohito-T.blog.com' size='2rem' />
+        <Hamburger className='hamburger' isOpen={isOpen} onToggleMenu={onToggleMenu} />
       </ItemWrap>
     </Wrapper>
   );

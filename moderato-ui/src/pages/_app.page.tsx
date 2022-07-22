@@ -5,11 +5,12 @@ import { ThemeProvider, createGlobalStyle } from 'styled-components';
 // css reset
 import '@/styles/sass/reset.scss';
 // css base
-import '@/styles/sass/global.scss';
+import '@/styles/sass/base.scss';
 // css
-import * as Theme from '@/styles/styled-components/global';
+import { Theme, Variables } from '@/styles/styled-components/global';
 // config
 import { AppMedia } from '@/config';
+
 const mediaConfig = new AppMedia();
 
 // import dynamic from "next/dynamic";
@@ -35,7 +36,7 @@ const App: NextPage<AppProps> = ({ Component, pageProps }: AppProps) => {
   return (
     <ThemeProvider theme={Theme.theme}>
       <GlobalStyle theme={Theme.theme} />
-      <Component {...pageProps} />;
+      <Component {...pageProps} />
     </ThemeProvider>
   );
 };

@@ -1,41 +1,39 @@
-// import { useState } from 'react';
+import { useState } from 'react';
 import { NextComponentType, NextPageContext } from 'next';
 // import { useRouter } from 'next/router';
 
-import { Footer } from '@/components/molecules';
+import { Header, Footer } from '@/components/molecules';
 import styled from 'styled-components';
-
-// type LayoutProps = Required<{
-//   readonly children: ReactElement;
-// }>;
 
 type LayoutProps = {
   showFooter?: boolean;
-  readonly children: React.ReactNode;
+  readonly children: Required<React.ReactNode>;
 };
 
-const StyledLayout = styled.div`
+const Wrapper = styled.div`
   width: 100%;
 `;
 
-const StyledMain = styled.main`
-  /* color: #000; */
+const FooterWrap = styled.div`
+  height: 100vh;
 `;
+
+const MainWrap = styled.main``;
 
 export const Layout: NextComponentType<NextPageContext, null, LayoutProps> = ({
   showFooter = true,
   children,
 }) => {
-  // const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   // const router = useRouter();
 
-  // const onClickOpenMenu = () => {
-  //   setIsMenuOpen(true);
-  // };
-
-  // const onClickCloseMenu = () => {
-  //   setIsMenuOpen(false);
-  // };
+  const onToggleMenu = () => {
+    if (isMenuOpen) {
+      setIsMenuOpen(false);
+    } else {
+      setIsMenuOpen(true);
+    }
+  };
 
   // パスが同一であればmenuを閉じる
   // const isTopPage = (href: string) => {
@@ -45,10 +43,14 @@ export const Layout: NextComponentType<NextPageContext, null, LayoutProps> = ({
   // };
 
   return (
-    <StyledLayout>
-      {/* <Header onClickMenuButton={() => onClickOpenMenu()} /> */}
-      <StyledMain>{children}</StyledMain>
-      {showFooter && <Footer />}
-    </StyledLayout>
+    <Wrapper className='layout' data-testid='layout'>
+      <Header isOpen={isMenuOpen} onToggleMenu={() => onToggleMenu()} />
+      <MainWrap>{children}</MainWrap>
+      {showFooter && (
+        <FooterWrap>
+          <Footer />
+        </FooterWrap>
+      )}
+    </Wrapper>
   );
 };

@@ -7,23 +7,24 @@
   box-sizing: border-box;
 }
 
-/* 1440px */
 html {
+  /* 1440px以上は固定にする */
   font-size: 24px;
 
   @media screen and (max-width: 1440px) {
     font-size: calc((100vw - 320px) / 140 + 16px);
   }
 
+  /* 650px以下は固定にする */
   @media screen and (max-width: 650px) {
     font-size: 18px;
   }
 }
 
-
 body {
   font-size: 1rem;
   font-family: 'Playfair Display', serif;
+  line-height: 1.7;
 }
 
 html,
@@ -34,4 +35,3 @@ body {
   min-height: 100vh;
   height: 100%;
 }
-

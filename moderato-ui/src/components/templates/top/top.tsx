@@ -38,7 +38,6 @@ export const Top: NextComponentType<NextPageContext, null, TopProps> = (
   return (
     <Wrapper>
       <TopSection />
-      <p>Top 画面</p>
       {/* <div>
         <ul>
           {blog.map((blog) => (

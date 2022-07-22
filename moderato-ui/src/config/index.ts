@@ -1,6 +1,10 @@
 import mediaQuery from 'styled-media-query';
 import { BaseConfig } from './_base';
-/** index.tsを綺麗にする。 */
+
+/**
+ * @desc Config まとめクラス
+ *       objectよりも可読性は上がるが、ほんの少しパフォーマンスが落ちる
+ */
 
 /** App System config */
 export class AppConfig extends BaseConfig {
