@@ -1,6 +1,5 @@
 import { NextComponentType, NextPageContext } from 'next';
 import styled from 'styled-components';
-
 import Link from 'next/link';
 
 const Button = styled.button`
@@ -76,10 +75,23 @@ export const Hamburger: NextComponentType<NextPageContext, null, HamburgerProps>
     <>
       <Nav className={`nav ${isOpen ? 'open' : ''}`}>
         <ul className='nav-items'>
-          <li>HOME</li>
+          <Link href={'/'} passHref>
+            <a>
+              <li>HOME</li>
+            </a>
+          </Link>
           {/* blog 一覧はまた今度 */}
           {/* <li>BLOG</li> */}
-          <li>CATEGORY</li>
+          <Link href={'/category'} passHref>
+            <a>
+              <li>CATEGORY</li>
+            </a>
+          </Link>
+          <Link href={'/about'} passHref>
+            <a>
+              <li>ABOUT</li>
+            </a>
+          </Link>
         </ul>
       </Nav>
       <Button className={className} onClick={onToggleMenu} data-testid='hamburger'>
