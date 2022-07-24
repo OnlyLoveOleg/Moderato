@@ -3,8 +3,8 @@ import styled from 'styled-components';
 
 type Props = {
   className?: string; // 親でstyleを当てれるようにするため
-  text: Required<string>;
-  size: Required<string>;
+  text: string;
+  size: string;
 };
 
 const StyledH2 = styled.h2<Omit<Props, 'text'>>`

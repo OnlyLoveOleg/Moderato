@@ -1,7 +1,7 @@
 /**
  * Template modules
  */
-// import {} from './about/about';
+export * from './about/about';
 // import {} from './blog/blog';
 // import {} from './category/Category';
 export * from './layout/layout';

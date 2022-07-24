@@ -3,10 +3,13 @@ import styled from 'styled-components';
 
 import { Blog } from '@/types/model';
 
+import { RecommendSection } from '@/components/organisms/top';
+
 /** 全体の設定 */
 const Wrapper = styled.div`
   width: 100%;
   background: ${(props): string => props.theme.white};
+  overflow-x: hidden; // HOMEは横スクロールなどが多いため
 `;
 
 const TopSection = styled.section`
@@ -14,6 +17,7 @@ const TopSection = styled.section`
   background-image: url('/images/top_section.png');
   background-position: center;
   background-size: cover;
+  position: relative;
 `;
 
 type TopProps = {
@@ -25,19 +29,19 @@ type TopProps = {
   infraBlogs: Blog[];
 };
 
-export const Top: NextComponentType<NextPageContext, null, TopProps> = (
-  {
-    // recommendBlogs,
-    // latestBlogs,
-    // designBlogs,
-    // frontBlogs,
-    // serverBlogs,
-    // infraBlogs,
-  },
-) => {
+export const Top: NextComponentType<NextPageContext, null, TopProps> = ({
+  recommendBlogs,
+  // latestBlogs,
+  // designBlogs,
+  // frontBlogs,
+  // serverBlogs,
+  // infraBlogs,
+}) => {
   return (
     <Wrapper>
-      <TopSection />
+      <TopSection>
+        <RecommendSection recommendBlogs={recommendBlogs} />
+      </TopSection>
       {/* <div>
         <ul>
           {blog.map((blog) => (

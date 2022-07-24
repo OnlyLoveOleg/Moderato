@@ -2,31 +2,26 @@ import { NextPage } from 'next';
 import type { AppProps } from 'next/app';
 import { ThemeProvider, createGlobalStyle } from 'styled-components';
 
-// css reset
+// css reset & base
 import '@/styles/sass/reset.scss';
-// css base
 import '@/styles/sass/base.scss';
-// css
-import { Theme, Variables } from '@/styles/styled-components/global';
-// config
-import { AppMedia } from '@/config';
-
-const mediaConfig = new AppMedia();
+import { Theme, MediaSP, MediaPC } from '@/styles/styled-components/global';
 
 // import dynamic from "next/dynamic";
 // Alertコンポーネントはクライアントサイドでのみレンダリングされる
 // const Alert = dynamic(() => import("../components/Alert"), { ssr: false });
 
+/** これいるか？ sassに分割してもいいかもo */
 const GlobalStyle = createGlobalStyle`
   .pc {
     display: block;
-    ${mediaConfig.mediaSP`
+    ${MediaSP`
       display: none;
     `}
   }
   .sp {
     display: block;
-    ${mediaConfig.mediaPC`
+    ${MediaPC`
       display: none;
     `}
   }

@@ -66,3 +66,13 @@ https://zenn.dev/mr_ozin/articles/17920ca403b8af
 ## テスト ロケーター
 
 `data-testid`で特定するようにする
+
+## CSS設計
+
+reset & baseに関しては利便性を考慮しsassで実装した。
+
+## 画像ファイル名
+
+```
+[使うpage名]_[内容].拡張子
+```
