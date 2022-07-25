@@ -1,7 +1,14 @@
 import { NextComponentType, NextPageContext } from 'next';
+import dynamic from 'next/dynamic';
 import styled from 'styled-components';
-
 import { Blog } from '@/types/model';
+
+import { Props as HsProps } from '@/components/organisms/top/horizontalScroll';
+const HorizontalScroll = dynamic<HsProps>(
+  () =>
+    import('@/components/organisms/top/horizontalScroll').then((module) => module.HorizontalScroll),
+  { ssr: false },
+);
 
 import { RecommendSection } from '@/components/organisms/top';
 
@@ -28,31 +35,21 @@ type TopProps = {
   serverBlogs: Blog[];
   infraBlogs: Blog[];
 };
-
+// @TODO: パララックス
+//        横スクロール
 export const Top: NextComponentType<NextPageContext, null, TopProps> = ({
   recommendBlogs,
   // latestBlogs,
-  // designBlogs,
+  designBlogs,
   // frontBlogs,
   // serverBlogs,
   // infraBlogs,
 }) => {
   return (
     <Wrapper>
-      <TopSection>
-        <RecommendSection recommendBlogs={recommendBlogs} />
-      </TopSection>
-      {/* <div>
-        <ul>
-          {blog.map((blog) => (
-            <li key={blog.id}>
-              <Link href={`/blog/${blog.id}`}>
-                <a>{blog.title}</a>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </div> */}
+      <TopSection>{/* <RecommendSection recommendBlogs={recommendBlogs} /> */}</TopSection>
+      {/* 横スクロール実装する */}
+      <HorizontalScroll blogs={designBlogs} />
     </Wrapper>
   );
 };
