@@ -1,4 +1,4 @@
-name: Frontend CI eslint
+name: Frontend eslint CI
 
 on:
   pull_request:

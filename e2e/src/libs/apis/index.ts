@@ -1,12 +1,12 @@
 import { ApiWithBaseAxios } from '@/libs/helper/_baseAxios';
-import { IRequestSystem } from '@/libs/apis/interface';
-import { RequestSystem } from '@/libs/apis/services';
+import { ISystemServices } from '@/libs/apis/interface';
+import { SystemServices } from '@/libs/apis/services';
 
 export interface API {
-  service: IRequestSystem;
+  service: ISystemServices;
 }
 
-const service = new RequestSystem(ApiWithBaseAxios());
+const service = new SystemServices(ApiWithBaseAxios());
 
 export const api: API = {
   service,

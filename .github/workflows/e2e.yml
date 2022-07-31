@@ -1,4 +1,4 @@
-name: E2E CI Playwright
+name: E2E Playwright CI
 
 on:
   pull_request:

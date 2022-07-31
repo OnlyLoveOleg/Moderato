@@ -2,8 +2,8 @@ import { NextComponentType, NextPageContext } from 'next';
 import dynamic from 'next/dynamic';
 import styled from 'styled-components';
 import { Blog } from '@/types/model';
-
 import { Props as HsProps } from '@/components/organisms/top/horizontalScroll';
+
 const HorizontalScroll = dynamic<HsProps>(
   () =>
     import('@/components/organisms/top/horizontalScroll').then((module) => module.HorizontalScroll),
@@ -11,6 +11,7 @@ const HorizontalScroll = dynamic<HsProps>(
 );
 
 import { RecommendSection } from '@/components/organisms/top';
+import { useEffect } from 'react';
 
 /** 全体の設定 */
 const Wrapper = styled.div`

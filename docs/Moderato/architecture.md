@@ -76,3 +76,7 @@ reset & baseに関しては利便性を考慮しsassで実装した。
 ```
 [使うpage名]_[内容].拡張子
 ```
+
+## dynamic import 
+
+[参考URL](https://nishinatoshiharu.com/overview-next-dynamic-import/)

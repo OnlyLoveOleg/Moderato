@@ -9,157 +9,142 @@ export type Props = {
 };
 
 const Wrapper = styled.section`
-  .slideSection {
-    min-height: 100vh;
+  .section {
+    width: 100%;
+    padding: 100px 0;
+  }
+  .container {
+    width: 80%;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .heading {
+    font-size: 40px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+
+  /* タイトル */
+  .title {
+    padding: 200px 0 20px;
+    font-size: 52px;
+    text-align: center;
+  }
+
+  /* 普通のセクション */
+  .normal-text {
+    font-size: 20px;
+    letter-spacing: 0.08em;
+    margin-top: 60px;
+  }
+
+  /* 横スクロールセクション */
+  .side-scroll {
+    background-color: #1b1717;
     display: flex;
+    justify-content: center;
     align-items: center;
   }
-  .slide {
-    display: inline-flex;
-    gap: 150px;
-    margin-bottom: 300px;
+
+  .side-scroll-heading {
+    color: #eeebdd;
   }
-  .slide_wrapper {
-    max-width: 100%;
-    padding: 0 50px;
-    overflow: hidden;
-  }
-  .singleslide {
+
+  .side-scroll-list-wrapper {
     position: relative;
-    cursor: pointer;
-  }
-  .singleslide_image {
-    overflow: hidden;
-    width: 600px;
-    height: 600px;
-  }
-  .singleslide_image img {
     width: 100%;
-    height: auto;
-    transform: scale(1.1);
-    filter: grayscale(0);
-    transition-duration: 0.5s;
+    height: 700px;
   }
-  .singleslide_text {
-    width: 50%;
-    height: 50%;
+
+  .side-scroll-list {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    -webkit-transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    transition-duration: 0.5s;
-    opacity: 0;
+    top: 60px;
+    left: 0;
+    display: flex;
+    gap: 0 60px;
   }
-  .singleslide_text_body {
-    padding: 40px;
+
+  .side-scroll-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 300px;
+    height: 420px;
+    background-color: #eeebdd;
+    color: #1b1717;
+    font-size: 32px;
+    font-weight: 700;
   }
-  .singleslide_text_body > h4 {
-    font-size: 60px;
-    color: #ffffff;
-  }
-  .singleslide_text_body > p {
-    font-size: 16px;
-    color: #ffffff;
-  }
-  .singleslide:hover .singleslide_text {
-    opacity: 1;
-    background: rgba(0, 0, 0, 0.5);
-  }
-  .singleslide:hover .singleslide_image img {
-    transform: scale(1.2);
-    filter: grayscale(100%);
-    transition-duration: 0.5s;
+
+  .side-scroll-item + .side-scroll-item {
+    margin-left: 60px;
   }
 `;
 
 export const HorizontalScroll: NextComponentType<NextPageContext, null, Props> = ({ blogs }) => {
   useEffect(() => {
-    const gsap = new AppGSAP();
-    const slideTl = gsap.getGSAP.timeline({
-      scrollTrigger: {
-        trigger: '.slideSection',
-        start: 'top 150',
-        pin: true,
-        end: `+=${innerHeight}`,
-        scrub: 1,
-      },
-    });
+    const gsap = new AppGSAP().getGSAP;
+    const listWrapperEl = document.querySelector('.side-scroll-list-wrapper');
+    const listEl = document.querySelector('.side-scroll-list');
 
-    const target = document.querySelector('.slide');
-
-    slideTl.to(target, {
-      delay: 0.1,
-      x: -target.clientWidth + innerWidth - 120,
-      ease: 'none',
-    });
+    if (listEl && listWrapperEl) {
+      console.log(`end の値+=${listEl.clientWidth - listWrapperEl.clientWidth}`);
+      console.log(`xPercentの値${-(listEl.clientWidth - listWrapperEl.clientWidth)}`);
+      gsap.to(listEl, {
+        // x: () => -(listEl.clientWidth - listWrapperEl.clientWidth),
+        xPercent: -2400,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '.side-scroll',
+          start: 'top top', // 要素の上端（top）が、ビューポートの上端（top）にきた時
+          end: () => `+=${listEl.clientWidth - listWrapperEl.clientWidth}`,
+          // end: `+=2400`,
+          scrub: true,
+          pin: true,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
+        },
+      });
+    }
   }, []);
 
   return (
     <Wrapper data-testid='horizontal-scroll'>
-      <div className='slideSection'>
-        <div className='slide_wrapper'>
-          <ul className='slide'>
-            <li className='singleslide'>
-              <div className='singleslide_image'>
-                <img src='img/slide1.jpg' alt='' />
-              </div>
-              <div className='singleslide_text'>
-                <div className='singleslide_text_body'>
-                  <h4>No.1</h4>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                    nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                    culpa qui officia deserunt mollit anim id est laborum.
-                  </p>
-                </div>
-              </div>
-            </li>
-
-            <li className='singleslide'>
-              <div className='singleslide_image'>
-                <img src='img/slide2.jpg' alt='' />
-              </div>
-              <div className='singleslide_text'>
-                <div className='singleslide_text_body'>
-                  <h4>No.2</h4>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                    nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                    culpa qui officia deserunt mollit anim id est laborum.
-                  </p>
-                </div>
-              </div>
-            </li>
-
-            <li className='singleslide'>
-              <div className='singleslide_image'>
-                <img src='img/slide3.jpg' alt='' />
-              </div>
-              <div className='singleslide_text'>
-                <div className='singleslide_text_body'>
-                  <h4>No.3</h4>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                    nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                    culpa qui officia deserunt mollit anim id est laborum.
-                  </p>
-                </div>
-              </div>
-            </li>
-          </ul>
+      <h1 className='title'>GSAP Pinning Side Scroll</h1>
+      <section className='normal section'>
+        <div className='container'>
+          <h2 className='normal-heading heading'>普通のセクション</h2>
+          <p className='normal-text'>
+            テキストが入りますよテキストが入りますよテキストが入りますよテキストが入りますよテキストが入りますよテキストが入りますよテキストが入りますよテキストが入りますよテキストが入りますよテキストが入りますよテキストが入りますよテキストが入りますよテキストが入りますよテキストが入りますよテキストが入りますよテキストが入りますよテキストが入りますよテキストが入りますよテキストが入りますよテキストが入りますよテキストが入りますよテキストが入りますよテキストが入りますよ
+          </p>
         </div>
-      </div>
+      </section>
+
+      <section className='side-scroll section'>
+        <div className='side-scroll-container container'>
+          <h2 className='side-scroll-heading heading'>横にスクロールするセクション</h2>
+          <div className='side-scroll-list-wrapper'>
+            <ul className='side-scroll-list'>
+              <li className='side-scroll-item'>Card</li>
+              <li className='side-scroll-item'>Card</li>
+              <li className='side-scroll-item'>Card</li>
+              <li className='side-scroll-item'>Card</li>
+              <li className='side-scroll-item'>Card</li>
+              <li className='side-scroll-item'>Card</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section className='normal section'>
+        <div className='container'>
+          <h2 className='normal-heading heading'>普通のセクション</h2>
+          <p className='normal-text'>
+            テキストが入りますよテキストが入りますよテキストが入りますよテキストが入りますよテキストが入りますよテキストが入りますよテキストが入りますよテキストが入りますよテキストが入りますよテキストが入りますよテキストが入りますよテキストが入りますよテキストが入りますよテキストが入りますよテキストが入りますよテキストが入りますよテキストが入りますよテキストが入りますよテキストが入りますよテキストが入りますよテキストが入りますよテキストが入りますよテキストが入りますよ
+          </p>
+        </div>
+      </section>
     </Wrapper>
   );
 };

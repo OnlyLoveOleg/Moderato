@@ -1,4 +1,4 @@
-name: Frontend CI Jest
+name: Frontend Jest CI
 
 on:
   pull_request:

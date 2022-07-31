@@ -1,11 +1,14 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef, WheelEvent } from 'react';
 import { NextComponentType, NextPageContext } from 'next';
 // import { useRouter } from 'next/router';
 
 import { Header, Footer } from '@/components/molecules';
 import styled from 'styled-components';
 
+const AppGSAP = import('@/libs/animation').then((mod) => new mod.AppGSAP());
+
 type LayoutProps = {
+  enableSmoothScroll?: boolean;
   showFooter?: boolean;
   readonly children: Required<React.ReactNode>;
 };
@@ -21,10 +24,12 @@ const FooterWrap = styled.div`
 const MainWrap = styled.main``;
 
 export const Layout: NextComponentType<NextPageContext, null, LayoutProps> = ({
+  enableSmoothScroll = false,
   showFooter = true,
   children,
 }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const layoutRef = useRef<HTMLDivElement>(null);
   // const router = useRouter();
 
   const onToggleMenu = () => {
@@ -42,8 +47,60 @@ export const Layout: NextComponentType<NextPageContext, null, LayoutProps> = ({
   //   }
   // };
 
+  useEffect(() => {
+    if (!enableSmoothScroll) {
+      return;
+    }
+
+    const initSmoothScroll = async () => {
+      const gsap = (await AppGSAP).getGSAP;
+
+      const smoothScroll = (toBottom: boolean) => {
+        let direction = '-=100';
+        if (toBottom) {
+          direction = '+=100';
+        }
+        gsap.to(window, {
+          scrollTo: { y: direction, autoKill: true },
+          duration: 1.5,
+        });
+      };
+
+      let startY: number;
+      const touchstart = (e: TouchEvent) => {
+        startY = e.changedTouches[0].pageY;
+      };
+
+      const touchmove = (e: TouchEvent) => {
+        e.preventDefault();
+        const moveY = e.changedTouches[0].pageY;
+        if (moveY < startY) {
+          smoothScroll(true);
+        } else {
+          smoothScroll(false);
+        }
+      };
+
+      // WheelEventが適用されない（bug?）そのためany追加
+      const mousemove = (e: WheelEvent & any) => {
+        e.preventDefault();
+        if (0 < e.deltaY) {
+          smoothScroll(true);
+        } else {
+          smoothScroll(false);
+        }
+      };
+
+      document.addEventListener('touchstart', touchstart, { passive: false });
+      document.addEventListener('touchmove', touchmove, { passive: false });
+      document.addEventListener('mousewheel', mousemove, { passive: false });
+    };
+
+    initSmoothScroll();
+  }, []);
+
   return (
-    <Wrapper className='layout' data-testid='layout'>
+    <Wrapper className='layout' data-testid='layout' id='main-container' ref={layoutRef}>
       <Header isOpen={isMenuOpen} onToggleMenu={() => onToggleMenu()} />
       <MainWrap>{children}</MainWrap>
       {showFooter && (
