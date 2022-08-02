@@ -4,8 +4,9 @@ import { BasePageModel } from '@/tests/pages/basePage';
 /**
  * @desc talents detail page
  */
-export class TalentsDetailPage extends BasePageModel {
+export class BlogDetailPage extends BasePageModel {
   constructor(page: Page) {
-    super(page, '/talents/slug');
+    /** /blog pageが現状で存在しない  */
+    super(page, '/');
   }
 }

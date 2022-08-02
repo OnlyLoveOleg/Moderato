@@ -1,4 +1,5 @@
 import { NextComponentType, NextPageContext } from 'next';
+
 import { H1 } from '@/components/atoms/heading';
 import styled from 'styled-components';
 import { displayFlex } from '@/styles/styled-components/global';
@@ -24,7 +25,6 @@ const Wrapper = styled.section<Omit<Props, 'title'>>`
 
 /**
  * @desc blog/slug top section
- * TODO サムネイルがトップセクションに配置される。
  */
 export const TopSection: NextComponentType<NextPageContext, null, Props> = ({
   className = '',

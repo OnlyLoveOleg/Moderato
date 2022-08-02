@@ -2,10 +2,10 @@ import type { Page } from 'playwright';
 import { BasePageModel } from '@/tests/pages/basePage';
 
 /**
- * @desc contact confirm page
+ * @desc /about page
  */
-export class ContactConfirmPage extends BasePageModel {
+export class AboutPage extends BasePageModel {
   constructor(page: Page) {
-    super(page, '/contact/confirm');
+    super(page, '/about');
   }
 }
