@@ -1,6 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  images: {
+    domains: ['picsum.photos', 'images.microcms-assets.io'],
+  },
   swcMinify: true, // added
   // @see pageExtensions https://zenn.dev/uttk/articles/d6be1c224494cb
   pageExtensions: ['page.tsx', 'page.ts'],

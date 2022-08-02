@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { NextComponentType, NextPageContext } from 'next';
 import { Blog } from '@/types/model';
 import styled from 'styled-components';
-import { AppGSAP } from '@/libs/animation';
+const AppGSAP = import('@/libs/animation').then((mod) => new mod.AppGSAP());
 
 export type Props = {
   blogs: Blog[];
@@ -84,29 +84,33 @@ const Wrapper = styled.section`
 
 export const HorizontalScroll: NextComponentType<NextPageContext, null, Props> = ({ blogs }) => {
   useEffect(() => {
-    const gsap = new AppGSAP().getGSAP;
-    const listWrapperEl = document.querySelector('.side-scroll-list-wrapper');
-    const listEl = document.querySelector('.side-scroll-list');
+    const init = async () => {
+      const gsap = (await AppGSAP).getGSAP;
+      const listWrapperEl = document.querySelector('.side-scroll-list-wrapper');
+      const listEl = document.querySelector('.side-scroll-list');
 
-    if (listEl && listWrapperEl) {
-      console.log(`end の値+=${listEl.clientWidth - listWrapperEl.clientWidth}`);
-      console.log(`xPercentの値${-(listEl.clientWidth - listWrapperEl.clientWidth)}`);
-      gsap.to(listEl, {
-        // x: () => -(listEl.clientWidth - listWrapperEl.clientWidth),
-        xPercent: -2400,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: '.side-scroll',
-          start: 'top top', // 要素の上端（top）が、ビューポートの上端（top）にきた時
-          end: () => `+=${listEl.clientWidth - listWrapperEl.clientWidth}`,
-          // end: `+=2400`,
-          scrub: true,
-          pin: true,
-          anticipatePin: 1,
-          invalidateOnRefresh: true,
-        },
-      });
-    }
+      if (listEl && listWrapperEl) {
+        console.log(`end の値+=${listEl.clientWidth - listWrapperEl.clientWidth}`);
+        console.log(`xPercentの値${-(listEl.clientWidth - listWrapperEl.clientWidth)}`);
+        gsap.to(listEl, {
+          // x: () => -(listEl.clientWidth - listWrapperEl.clientWidth),
+          xPercent: -2400,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: '.side-scroll',
+            start: 'top top', // 要素の上端（top）が、ビューポートの上端（top）にきた時
+            end: () => `+=${listEl.clientWidth - listWrapperEl.clientWidth}`,
+            // end: `+=2400`,
+            scrub: true,
+            pin: true,
+            anticipatePin: 1,
+            invalidateOnRefresh: true,
+          },
+        });
+      }
+    };
+
+    init();
   }, []);
 
   return (

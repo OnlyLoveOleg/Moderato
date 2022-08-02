@@ -1,4 +1,4 @@
-import { MicroCMSObjectContent, MicroCMSQueries } from 'microcms-js-sdk';
+import { MicroCMSQueries } from 'microcms-js-sdk';
 import { Blog, Category } from '@/types/model';
 
 export interface IHomeService {
@@ -6,7 +6,7 @@ export interface IHomeService {
    * @desc ブログ詳細
    * @param contentId
    */
-  fetchBlogDetail(contentId: string): Promise<(MicroCMSObjectContent & Blog) | null>;
+  fetchBlogDetail(contentId: string): Promise<Blog>;
   /**
    * @desc ブログをリスト取得する
    * TODO:（これpagerとかに変えた方がいいかも）
@@ -20,6 +20,10 @@ export interface IHomeService {
    * @desc 最新のblogを取得する（cratedAt基準）
    */
   fetchLatestBlogList(): Promise<Blog[]>;
+  /**
+   * @desc 同じカテゴリーのブログを取得する（createdAt基準）
+   */
+  fetchSameCategoryBlogList(categoryId: string): Promise<Blog[]>;
   /**
    * @desc カテゴリー詳細を取得する
    * @param contentId

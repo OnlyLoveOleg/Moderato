@@ -49,7 +49,7 @@ const Top: NextPage<Props> = ({
   infraBlogs,
 }) => {
   return (
-    <Layout enableSmoothScroll={true} showFooter={true}>
+    <Layout showFooter={true}>
       <TopTpl
         recommendBlogs={recommendBlogs}
         latestBlogs={latestBlogs}

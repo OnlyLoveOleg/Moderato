@@ -1,4 +1,4 @@
-import { MicroCMSObjectContent, MicroCMSQueries } from 'microcms-js-sdk';
+import { MicroCMSQueries } from 'microcms-js-sdk';
 import { BaseService } from './_base.service';
 import { Blog, Category } from '@/types/model';
 import { IHomeService } from '@/libs/apis/interface';
@@ -8,10 +8,11 @@ export class HomeService extends BaseService implements IHomeService {
 
   private categoryEndPoint = 'categories';
 
-  public fetchBlogDetail = async (
-    contentId: string,
-  ): Promise<(MicroCMSObjectContent & Blog) | null> => {
-    const data = await this.mCMSClient.getListDetail({ endpoint: this.blogEndPoint, contentId });
+  public fetchBlogDetail = async (contentId: string): Promise<Blog> => {
+    const data = await this.mCMSClient.getListDetail<Blog>({
+      endpoint: this.blogEndPoint,
+      contentId,
+    });
     return data;
   };
 
@@ -47,8 +48,19 @@ export class HomeService extends BaseService implements IHomeService {
     return data.contents;
   };
 
+  public fetchSameCategoryBlogList = async (categoryId: string): Promise<Blog[]> => {
+    // もちろん降順
+    // 最新は4件で十分
+    const limit = 4;
+    const data = await this.mCMSClient.getList({
+      endpoint: this.blogEndPoint,
+      queries: { filters: `category[equals]${categoryId}`, orders: '-createdAt', limit },
+    });
+    return data.contents;
+  };
+
   public fetchCategoryDetail = async (contentId: string): Promise<Category> => {
-    const data = await this.mCMSClient.getListDetail({
+    const data = await this.mCMSClient.getListDetail<Category>({
       endpoint: this.categoryEndPoint,
       contentId,
     });

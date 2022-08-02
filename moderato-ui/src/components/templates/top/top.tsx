@@ -10,9 +10,6 @@ const HorizontalScroll = dynamic<HsProps>(
   { ssr: false },
 );
 
-import { RecommendSection } from '@/components/organisms/top';
-import { useEffect } from 'react';
-
 /** 全体の設定 */
 const Wrapper = styled.div`
   width: 100%;
@@ -38,19 +35,22 @@ type TopProps = {
 };
 // @TODO: パララックス
 //        横スクロール
-export const Top: NextComponentType<NextPageContext, null, TopProps> = ({
-  recommendBlogs,
-  // latestBlogs,
-  designBlogs,
-  // frontBlogs,
-  // serverBlogs,
-  // infraBlogs,
-}) => {
+export const Top: NextComponentType<NextPageContext, null, TopProps> = (
+  {
+    // recommendBlogs,
+    // latestBlogs,
+    // designBlogs,
+    // frontBlogs,
+    // serverBlogs,
+    // infraBlogs,
+  },
+) => {
   return (
     <Wrapper>
-      <TopSection>{/* <RecommendSection recommendBlogs={recommendBlogs} /> */}</TopSection>
+      <TopSection></TopSection>
+      {/* <RecommendSection recommendBlogs={recommendBlogs} /> */}
       {/* 横スクロール実装する */}
-      <HorizontalScroll blogs={designBlogs} />
+      {/* <HorizontalScroll blogs={designBlogs} /> */}
     </Wrapper>
   );
 };

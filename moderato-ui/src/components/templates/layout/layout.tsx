@@ -1,8 +1,7 @@
 import { useState, useEffect, useRef, WheelEvent } from 'react';
 import { NextComponentType, NextPageContext } from 'next';
-// import { useRouter } from 'next/router';
 
-import { Header, Footer } from '@/components/molecules';
+import { Header, Footer } from '@/components/molecules/common';
 import styled from 'styled-components';
 
 const AppGSAP = import('@/libs/animation').then((mod) => new mod.AppGSAP());
@@ -15,10 +14,10 @@ type LayoutProps = {
 
 const Wrapper = styled.div`
   width: 100%;
-`;
 
-const FooterWrap = styled.div`
-  height: 100vh;
+  > .footer {
+    height: 100vh;
+  }
 `;
 
 const MainWrap = styled.main``;
@@ -103,11 +102,7 @@ export const Layout: NextComponentType<NextPageContext, null, LayoutProps> = ({
     <Wrapper className='layout' data-testid='layout' id='main-container' ref={layoutRef}>
       <Header isOpen={isMenuOpen} onToggleMenu={() => onToggleMenu()} />
       <MainWrap>{children}</MainWrap>
-      {showFooter && (
-        <FooterWrap>
-          <Footer />
-        </FooterWrap>
-      )}
+      {showFooter && <Footer className='footer' />}
     </Wrapper>
   );
 };
