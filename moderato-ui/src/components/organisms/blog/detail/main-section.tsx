@@ -7,7 +7,9 @@ type Props = {
   blogDetail: Blog;
 };
 
-const Wrapper = styled.section``;
+const Wrapper = styled.section`
+  margin-bottom: 20px;
+`;
 
 /** 全体の設定 */
 export const MainSection: NextComponentType<NextPageContext, null, Props> = ({ blogDetail }) => {

@@ -17,6 +17,7 @@ const Wrapper = styled.section<Omit<Props, 'title'>>`
   background-position: center;
   background-size: cover;
   position: relative;
+  margin-bottom: 20px;
 
   > .top-title {
     color: #fff;
