@@ -1,12 +1,31 @@
 import { NextComponentType, NextPageContext } from 'next';
 import styled from 'styled-components';
+// import dynamic from 'next/dynamic';
+// import { Props as HsProps } from '@/components/organisms/top/horizontalScroll';
 
 import { Blog } from '@/types/model';
 
-const StyledSection = styled.section`
-  height: 100vh;
+// const HorizontalScroll = dynamic<HsProps>(
+//   () =>
+//     import('@/components/organisms/top/horizontalScroll').then((module) => module.HorizontalScroll),
+//   { ssr: false },
+// );
+
+import { AboutSection } from '@/components/organisms/top';
+
+/** 全体の設定 */
+const Wrapper = styled.div`
   width: 100%;
   background: ${(props): string => props.theme.white};
+  overflow-x: hidden; // HOMEは横スクロールなどが多いため
+`;
+
+const TopSection = styled.section`
+  height: 100vh;
+  background-image: url('/images/top_section.png');
+  background-position: center;
+  background-size: cover;
+  position: relative;
 `;
 
 type TopProps = {
@@ -17,7 +36,8 @@ type TopProps = {
   serverBlogs: Blog[];
   infraBlogs: Blog[];
 };
-
+// @TODO: パララックス
+//        横スクロール
 export const Top: NextComponentType<NextPageContext, null, TopProps> = (
   {
     // recommendBlogs,
@@ -29,19 +49,12 @@ export const Top: NextComponentType<NextPageContext, null, TopProps> = (
   },
 ) => {
   return (
-    <StyledSection>
-      <p>Top 画面</p>
-      {/* <div>
-        <ul>
-          {blog.map((blog) => (
-            <li key={blog.id}>
-              <Link href={`/blog/${blog.id}`}>
-                <a>{blog.title}</a>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </div> */}
-    </StyledSection>
+    <Wrapper data-testid='top-tpl'>
+      <TopSection></TopSection>
+      <AboutSection />
+      {/* <RecommendSection recommendBlogs={recommendBlogs} /> */}
+      {/* 横スクロール実装する */}
+      {/* <HorizontalScroll blogs={designBlogs} /> */}
+    </Wrapper>
   );
 };

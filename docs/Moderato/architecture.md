@@ -57,3 +57,26 @@ identity-obj-proxy # CSS Modules をモックする
 ## API key 隠蔽
 
 https://zenn.dev/mr_ozin/articles/17920ca403b8af
+
+## UI実装について
+
+子コンポーネントではmarginは使わない。
+適切なpaddingならOK
+
+## テスト ロケーター
+
+`data-testid`で特定するようにする
+
+## CSS設計
+
+reset & baseに関しては利便性を考慮しsassで実装した。
+
+## 画像ファイル名
+
+```
+[使うpage名]_[内容].拡張子
+```
+
+## dynamic import 
+
+[参考URL](https://nishinatoshiharu.com/overview-next-dynamic-import/)

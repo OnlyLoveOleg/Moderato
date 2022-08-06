@@ -1,7 +1,36 @@
 import type { NextPage, InferGetStaticPropsType, GetStaticPropsContext } from 'next';
-import Link from 'next/link';
-
+import { CategoryTpl, Layout } from '@/components/templates';
 import { HomeAPI } from '@/libs/apis';
+
+// type DefaultOptions = {
+//   e: string;
+//   name: string;
+// };
+
+// type DictionaryValue = {
+//   fileName: string;
+//   filePath: string;
+// };
+
+// type Dictionary = Map<Key, DictionaryValue>;
+
+// // https://webbibouroku.com/Blog/Article/js-map
+// const defaultOptions: Dictionary = new Map([
+//   [
+//     'e',
+//     {
+//       fileName: 'encrypted',
+//       filePath: '', // デフォルトではカレント
+//     },
+//   ],
+//   [
+//     'd',
+//     {
+//       fileName: 'decrypted',
+//       filePath: '',
+//     },
+//   ],
+// ]);
 
 /**
  * @desc カテゴリー一覧 page
@@ -12,31 +41,29 @@ import { HomeAPI } from '@/libs/apis';
 export const getStaticProps = async (context: GetStaticPropsContext) => {
   console.log(context);
   const categories = await HomeAPI.fetchCategoryList();
+  const primaryCategories = await HomeAPI.fetchPrimaryCategoryList();
 
   return {
     props: {
       categories,
+      primaryCategories,
     },
   };
 };
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>;
 
-/** sortとか必要 */
-
-const Category: NextPage<Props> = ({ categories }) => {
+/**
+ * sortとか必要
+ * dynamic import使う
+ * https://zenn.dev/uhyo/books/react-concurrent-handson/viewer/what-is-suspense
+ * @see https://tech.012grp.co.jp/entry/next_dynamicImport
+ */
+const Category: NextPage<Props> = ({ categories, primaryCategories }) => {
   return (
-    <div>
-      <ul>
-        {categories.map((category) => (
-          <li key={category.id}>
-            <Link href={`/category/${category.id}`}>
-              <a>{category.name}</a>
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <Layout showFooter={true}>
+      <CategoryTpl categories={categories} primaryCategories={primaryCategories} />
+    </Layout>
   );
 };
 

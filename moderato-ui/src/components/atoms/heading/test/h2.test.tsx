@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { H2 } from '@/components/atoms/heading';
-import { screenShot } from '@/tests/helper';
+import { screenShot } from '@/tests/util';
 
 describe('Heading H2 test.', () => {
   test('Check H2 view', () => {

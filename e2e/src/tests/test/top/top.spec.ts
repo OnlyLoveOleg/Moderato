@@ -10,7 +10,7 @@ test.describe('/top Page Test.', () => {
     await topPage.navigate();
   });
 
-  test('Top Pageが表示できるか', async () => {
+  test('/ へ遷移ができるか', async () => {
     expect(topPage.isCurrentPage).toBe(true);
   });
 });

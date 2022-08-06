@@ -3,11 +3,18 @@ import { ServerStyleSheet } from 'styled-components';
 
 export default class MyDocument extends Document {
   render(): JSX.Element {
+    // html要素にdir属性を指定すると、文書全体の書字方向を示すことができる。
+    // 日本語や英語などの場合は、左から右へ記述するので ltr を指定します。
+    const { locale } = this.props.__NEXT_DATA__;
     return (
-      <Html lang='ja'>
+      <Html lang={locale} dir='ltr'>
         <Head>
           <link
             href='https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;900&display=swap'
+            rel='stylesheet'
+          />
+          <link
+            href='https://fonts.googleapis.com/css2?family=Mrs+Saint+Delafield&display=swap'
             rel='stylesheet'
           />
         </Head>

@@ -17,6 +17,7 @@ import {
 export const mockTechCategory: Category = {
   ...baseCMS,
   name: 'tech',
+  isPrimary: true,
   theme: mockTechTheme,
 };
 
@@ -30,6 +31,7 @@ export const mockTechCategory: Category = {
 export const mockDesignCategory: Category = {
   ...baseCMS,
   name: 'front',
+  isPrimary: true,
   theme: mockDesignTheme,
   parent: mockTechCategory,
 };
@@ -40,6 +42,7 @@ export const mockDesignCategory: Category = {
 export const mockFrontCategory: Category = {
   ...baseCMS,
   name: 'front',
+  isPrimary: true,
   theme: mockFrontTheme,
   parent: mockTechCategory,
 };
@@ -50,6 +53,7 @@ export const mockFrontCategory: Category = {
 export const mockServerCategory: Category = {
   ...baseCMS,
   name: 'server',
+  isPrimary: true,
   theme: mockServerTheme,
   parent: mockTechCategory,
 };
@@ -60,6 +64,7 @@ export const mockServerCategory: Category = {
 export const mockInfraCategory: Category = {
   ...baseCMS,
   name: 'infra',
+  isPrimary: true,
   theme: mockInfraTheme,
   parent: mockTechCategory,
 };
