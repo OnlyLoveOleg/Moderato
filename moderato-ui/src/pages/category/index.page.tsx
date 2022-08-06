@@ -1,6 +1,5 @@
 import type { NextPage, InferGetStaticPropsType, GetStaticPropsContext } from 'next';
-import Link from 'next/link';
-
+import { CategoryTpl, Layout } from '@/components/templates';
 import { HomeAPI } from '@/libs/apis';
 
 // type DefaultOptions = {
@@ -42,10 +41,12 @@ import { HomeAPI } from '@/libs/apis';
 export const getStaticProps = async (context: GetStaticPropsContext) => {
   console.log(context);
   const categories = await HomeAPI.fetchCategoryList();
+  const primaryCategories = await HomeAPI.fetchPrimaryCategoryList();
 
   return {
     props: {
       categories,
+      primaryCategories,
     },
   };
 };
@@ -58,19 +59,11 @@ type Props = InferGetStaticPropsType<typeof getStaticProps>;
  * https://zenn.dev/uhyo/books/react-concurrent-handson/viewer/what-is-suspense
  * @see https://tech.012grp.co.jp/entry/next_dynamicImport
  */
-const Category: NextPage<Props> = ({ categories }) => {
+const Category: NextPage<Props> = ({ categories, primaryCategories }) => {
   return (
-    <div>
-      <ul>
-        {categories.map((category) => (
-          <li key={category.id}>
-            <Link href={`/category/${category.id}`}>
-              <a>{category.name}</a>
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <Layout showFooter={true}>
+      <CategoryTpl categories={categories} primaryCategories={primaryCategories} />
+    </Layout>
   );
 };
 

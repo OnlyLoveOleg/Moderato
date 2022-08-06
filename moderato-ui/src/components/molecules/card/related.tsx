@@ -4,11 +4,11 @@ import Image from 'next/image';
 import Link from 'next/link';
 import styled from 'styled-components';
 import { displayFlex } from '@/styles/styled-components/global';
+import { DefBlogToImg } from '@/config';
 
 type Props = {
   className?: string;
   blogs: Blog[];
-  onClick?: () => void;
 };
 
 const Wrapper = styled.div`
@@ -17,8 +17,8 @@ const Wrapper = styled.div`
     alignItems: 'flex-start;',
     flexDirection: 'row',
   })};
-  width: 100%;
   flex-wrap: wrap;
+  width: 100%;
 
   .card {
     margin: 10px;
@@ -91,8 +91,22 @@ const Wrapper = styled.div`
 export const Related: NextComponentType<NextPageContext, null, Props> = ({
   className = '',
   blogs,
-  // onClick,
 }) => {
+  const pickThumbnail = (blog: Blog): string => {
+    const thumbnail = blog.thumbnail?.url ?? blog.category.name;
+    switch (thumbnail) {
+      case 'design':
+        return DefBlogToImg.design;
+      case 'front':
+        return DefBlogToImg.front;
+      case 'server':
+        return DefBlogToImg.server;
+      case 'infra':
+        return DefBlogToImg.infra;
+      default:
+        return thumbnail;
+    }
+  };
   return (
     <Wrapper className={className}>
       {blogs.map((b, i) => {
@@ -103,14 +117,14 @@ export const Related: NextComponentType<NextPageContext, null, Props> = ({
               style={{ position: 'relative', width: '100p%', height: '200px' }}
             >
               <Link href={`/blog/${b.id}`}>
-                <Image src={b.thumbnail.url} layout='fill' objectFit='cover' alt='rover' />
+                <Image src={pickThumbnail(b)} layout='fill' objectFit='cover' alt='rover' />
               </Link>
             </div>
 
             <div className='card-body'>
               <span className='tag tag-teal'>Technology</span>
               <h4>Why is the Tesla Cybertruck designed the way it is?</h4>
-              <p>An exploration into the truck's polarising design</p>
+              <p>An exploration into the truck&apos;s polarising design</p>
               <div className='user'>
                 <img
                   src='https://yt3.ggpht.com/a/AGF-l7-0J1G0Ue0mcZMw-99kMeVuBmRxiPjyvIYONg=s900-c-k-c0xffffffff-no-rj-mo'

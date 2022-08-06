@@ -1,1 +1,1 @@
-export * from './_baseGSAP';
+export * from './_base.gsap';

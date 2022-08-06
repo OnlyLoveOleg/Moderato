@@ -7,9 +7,9 @@ import { BaseConfig } from './_base';
 
 /** App System config */
 export class AppConfig extends BaseConfig {
-  private MICRO_CMS_DOMAIN = process.env.MICRO_CMS_DOMAIN ?? '';
+  private readonly MICRO_CMS_DOMAIN = process.env.MICRO_CMS_DOMAIN ?? '';
 
-  private MICRO_CMS_API_KEY = process.env.MICRO_CMS_API_KEY ?? '';
+  private readonly MICRO_CMS_API_KEY = process.env.MICRO_CMS_API_KEY ?? '';
 
   public get microCMSDomain(): string {
     return this.MICRO_CMS_DOMAIN;
@@ -21,4 +21,9 @@ export class AppConfig extends BaseConfig {
 }
 
 /** systemのconst的なもの */
-export class AppConstraints extends BaseConfig {}
+export const DefBlogToImg = {
+  design: './default/design.jpg.webp',
+  front: './default/front.jpg.webp',
+  server: '',
+  infra: './default/infra.jpg.webp',
+};

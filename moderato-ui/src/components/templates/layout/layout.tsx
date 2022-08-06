@@ -22,6 +22,11 @@ const Wrapper = styled.div`
 
 const MainWrap = styled.main``;
 
+/**
+ * @desc 現状考えてる責務
+ * 1. スムーススクロールの可否
+ * 2. footerが消せる
+ */
 export const Layout: NextComponentType<NextPageContext, null, LayoutProps> = ({
   enableSmoothScroll = false,
   showFooter = true,

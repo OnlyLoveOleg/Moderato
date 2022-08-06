@@ -9,6 +9,10 @@ interface FadeInType {
   end: string;
 }
 
+/**
+ * @desc fade関連のeffect
+ */
+
 export const fadeInFromLeft = (gsap: GSAP) => {
   gsap.registerEffect({
     name: 'fadeInFromLeft',

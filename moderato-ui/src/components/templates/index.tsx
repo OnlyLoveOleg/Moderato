@@ -3,6 +3,6 @@
  */
 export * from './about/about';
 export * from './blog/detail';
-// import {} from './category/Category';
+export * from './category/category';
 export * from './layout/layout';
 export * from './top/top';

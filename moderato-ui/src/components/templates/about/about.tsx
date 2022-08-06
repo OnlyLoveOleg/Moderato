@@ -43,7 +43,6 @@ export const About: NextComponentType<NextPageContext> = () => {
           width='700'
           height='525'
           alt='me_image'
-          // objectFit='cover'
           objectFit='contain'
           onError={(e) => {
             e.currentTarget.src = `https://placehold.jp/32/003060/e0e0e0/300x200.png`;

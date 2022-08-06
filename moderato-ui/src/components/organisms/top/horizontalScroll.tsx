@@ -113,6 +113,7 @@ export const HorizontalScroll: NextComponentType<NextPageContext, null, Props> =
     init();
   }, []);
 
+  console.log(blogs);
   return (
     <Wrapper data-testid='horizontal-scroll'>
       <h1 className='title'>GSAP Pinning Side Scroll</h1>

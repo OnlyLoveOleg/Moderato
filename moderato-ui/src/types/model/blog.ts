@@ -19,9 +19,9 @@ export interface Blog extends BaseCMS {
    */
   recommend: boolean;
   /**
-   * サムネイル
+   * サムネイル（必須にしたいが無しにしたいかも）
    */
-  thumbnail: Thumbnail;
+  thumbnail?: Thumbnail;
   /**
    * 作者
    */

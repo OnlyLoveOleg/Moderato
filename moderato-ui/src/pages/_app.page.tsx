@@ -6,6 +6,8 @@ import { ThemeProvider, createGlobalStyle } from 'styled-components';
 import '@/styles/sass/reset.scss';
 import '@/styles/sass/base.scss';
 import { Theme, MediaSP, MediaPC } from '@/styles/styled-components/global';
+import { useApp } from '@/composable/use-app';
+import { Loading } from '@/components/molecules/common';
 
 // import dynamic from "next/dynamic";
 // Alertコンポーネントはクライアントサイドでのみレンダリングされる
@@ -28,10 +30,12 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 const App: NextPage<AppProps> = ({ Component, pageProps }: AppProps) => {
+  const { isLoading } = useApp();
+
   return (
     <ThemeProvider theme={Theme.theme}>
       <GlobalStyle theme={Theme.theme} />
-      <Component {...pageProps} />
+      {isLoading ? <Loading /> : <Component {...pageProps} />}
     </ThemeProvider>
   );
 };
