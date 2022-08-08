@@ -8,21 +8,26 @@ import styled from 'styled-components';
 // import 'swiper/css';
 // import 'swiper/css/navigation';
 import { Recommend } from '@/components/molecules/card';
+import { posLowLeft, displayFlex } from '@/styles/styled-components/global';
 
 type Props = {
   recommendBlogs: Blog[];
 };
 
-const Wrapper = styled.div`
+const Wrapper = styled.section`
+  ${posLowLeft({ bottom: '-25%' })};
+  ${displayFlex({
+    justifyContent: 'space-evenly',
+    alignItems: 'flex-start;',
+    flexDirection: 'row',
+  })};
+  height: 50vh;
+  width: 100%;
   background-color: transparent;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  overflow: hidden;
-
-  .swiper {
+  z-index: 1;
+  /* .swiper {
     overflow: hidden;
-  }
+  } */
 `;
 
 export const RecommendSection: NextComponentType<NextPageContext, null, Props> = ({

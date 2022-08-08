@@ -11,6 +11,7 @@ interface FadeInType {
 
 /**
  * @desc fade関連のeffect
+ * @see https://devsakaso.com/gsap-scrolltrigger-timing/
  */
 
 export const fadeInFromLeft = (gsap: GSAP) => {

@@ -8,10 +8,13 @@ import styled from 'styled-components';
 type Props = {
   className?: string;
   blogs: Blog[];
-  onClick?: () => void;
 };
 
-const RelatedWrap = styled.section``;
+const RelatedWrap = styled.section`
+  .related-title {
+    padding: 1rem;
+  }
+`;
 
 /**
  * @desc 関連おすすめブログ
@@ -22,7 +25,7 @@ export const RelatedSection: NextComponentType<NextPageContext, null, Props> = (
 }) => {
   return (
     <RelatedWrap className={className}>
-      <H2 text='Related' size='2rem' />
+      <H2 className='related-title' text='Related' size='2rem' />
       <Related blogs={blogs} />
     </RelatedWrap>
   );

@@ -4,7 +4,11 @@ import Image from 'next/image';
 import Link from 'next/link';
 import styled from 'styled-components';
 import { displayFlex } from '@/styles/styled-components/global';
-import { DefBlogToImg } from '@/config';
+import { pickThumbnail } from '@/composable/helper';
+import { Category as CategoryTag } from '@/components/atoms/tag';
+import { UserIcon } from '@/components/atoms/icon';
+import { H4, H5 } from '@/components/atoms/heading';
+import { Paragraph, Day } from '@/components/atoms/text';
 
 type Props = {
   className?: string;
@@ -27,12 +31,15 @@ const Wrapper = styled.div`
     box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
     overflow: hidden;
     width: 45%;
+
+    &-header {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      cursor: pointer;
+    }
   }
-  .card-header img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-  }
+
   .card-body {
     display: flex;
     flex-direction: column;
@@ -40,26 +47,6 @@ const Wrapper = styled.div`
     align-items: flex-start;
     padding: 20px;
     min-height: 250px;
-  }
-
-  .tag {
-    background: #cccccc;
-    border-radius: 50px;
-    font-size: 12px;
-    margin: 0;
-    color: #fff;
-    padding: 2px 10px;
-    text-transform: uppercase;
-    cursor: pointer;
-  }
-  .tag-teal {
-    background-color: #47bcd4;
-  }
-  .tag-purple {
-    background-color: #5e76bf;
-  }
-  .tag-pink {
-    background-color: #cd5b9f;
   }
 
   .card-body p {
@@ -92,48 +79,28 @@ export const Related: NextComponentType<NextPageContext, null, Props> = ({
   className = '',
   blogs,
 }) => {
-  const pickThumbnail = (blog: Blog): string => {
-    const thumbnail = blog.thumbnail?.url ?? blog.category.name;
-    switch (thumbnail) {
-      case 'design':
-        return DefBlogToImg.design;
-      case 'front':
-        return DefBlogToImg.front;
-      case 'server':
-        return DefBlogToImg.server;
-      case 'infra':
-        return DefBlogToImg.infra;
-      default:
-        return thumbnail;
-    }
-  };
   return (
     <Wrapper className={className}>
       {blogs.map((b, i) => {
         return (
           <article className='card' key={i}>
-            <div
-              className='card-header'
-              style={{ position: 'relative', width: '100p%', height: '200px' }}
-            >
+            <div className='card-header'>
               <Link href={`/blog/${b.id}`}>
                 <Image src={pickThumbnail(b)} layout='fill' objectFit='cover' alt='rover' />
               </Link>
             </div>
 
             <div className='card-body'>
-              <span className='tag tag-teal'>Technology</span>
-              <h4>Why is the Tesla Cybertruck designed the way it is?</h4>
-              <p>An exploration into the truck&apos;s polarising design</p>
+              <CategoryTag text={b.category.name} />
+              <H4 size='1.5rem' text={b.title} />
+              <Paragraph size='2rem' text={b.subTitle} />
+
               <div className='user'>
-                <img
-                  src='https://yt3.ggpht.com/a/AGF-l7-0J1G0Ue0mcZMw-99kMeVuBmRxiPjyvIYONg=s900-c-k-c0xffffffff-no-rj-mo'
-                  alt='user'
-                />
-                <div className='user-info'>
-                  <h5>July Dec</h5>
-                  <small>2h ago</small>
-                </div>
+                <Link href={'/author'}>
+                  <UserIcon author={b.author} height={'48px'} width={'48px'} />
+                </Link>
+                <H5 size='1rem' text={b.author.name} />
+                <Day dayText={b.updatedAt} />
               </div>
             </div>
           </article>
