@@ -3,6 +3,9 @@ import { ParsedUrlQuery } from 'node:querystring';
 import { HomeAPI } from '@/libs/apis';
 import { Detail as DetailTpl, Layout } from '@/components/templates';
 
+import 'highlight.js/styles/hybrid.css';
+import { convertHighlight } from '@/libs/highlight';
+
 interface PathParams extends ParsedUrlQuery {
   slug: string;
 }
@@ -20,6 +23,8 @@ export const getStaticProps = async (context: GetStaticPropsContext<PathParams>)
   const id = context.params?.slug!;
   /** 同カテゴリのblog */
   const blogDetail = await HomeAPI.fetchBlogDetail(id);
+  blogDetail.content = convertHighlight(blogDetail.content);
+
   const sameCategoryBlogs = await HomeAPI.fetchSameCategoryBlogList(blogDetail.category.id);
 
   return {

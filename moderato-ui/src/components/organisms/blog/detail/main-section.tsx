@@ -18,6 +18,8 @@ export const MainSection: NextComponentType<NextPageContext, null, Props> = ({ b
     <Wrapper>
       <h1>{blogDetail?.title}</h1>
       {/* <p>{detail.publishedAt}</p> */}
+      {/* APIから返される記事本文は文字列形式（HTMLタグも文字列として取得される）なので、これをHTMLとして描画するためにdangerouslySetInnerHTML
+      を使っています。 */}
       <div
         dangerouslySetInnerHTML={{
           __html: `${blogDetail?.content}`,

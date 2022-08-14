@@ -14,6 +14,9 @@ const Wrapper = styled.div`
   .related-section {
     margin-bottom: 50px;
   }
+
+  .main-section {
+  }
 `;
 
 /** 全体の設定 */
@@ -25,7 +28,7 @@ export const Detail: NextComponentType<NextPageContext, null, Props> = ({
     <Wrapper data-testid='blog-detail-tpl'>
       <TopSection title={blogDetail.title} thumbnail={pickThumbnail(blogDetail)} />
       {/* section content */}
-      <MainSection blogDetail={blogDetail} />
+      <MainSection className='main-section' blogDetail={blogDetail} />
       {/* section footer */}
       <RelatedSection className='related-section' blogs={sameCategoryBlogs} />
     </Wrapper>
