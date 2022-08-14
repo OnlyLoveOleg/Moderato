@@ -85,19 +85,28 @@ export const Related: NextComponentType<NextPageContext, null, Props> = ({
         return (
           <article className='card' key={i}>
             <div className='card-header'>
-              <Link href={`/blog/${b.id}`}>
+              <Link href={`/blogs/${b.id}`}>
+                {/* <a> これ入れないとerrorが出るが画像が表示されない */}
                 <Image src={pickThumbnail(b)} layout='fill' objectFit='cover' alt='rover' />
+                {/* </a> */}
               </Link>
             </div>
 
             <div className='card-body'>
-              <CategoryTag text={b.category.name} />
+              {/* id検索でblogを絞り込む */}
+              <Link href={`/category/#${b.category.id}`}>
+                <a>
+                  <CategoryTag text={b.category.name} />
+                </a>
+              </Link>
               <H4 size='1.5rem' text={b.title} />
               <Paragraph size='2rem' text={b.subTitle} />
 
               <div className='user'>
-                <Link href={'/author'}>
-                  <UserIcon author={b.author} height={'48px'} width={'48px'} />
+                <Link href={'/about'}>
+                  <a>
+                    <UserIcon author={b.author} height={'48px'} width={'48px'} />
+                  </a>
                 </Link>
                 <H5 size='1rem' text={b.author.name} />
                 <Day dayText={b.updatedAt} />

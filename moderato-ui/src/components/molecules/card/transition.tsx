@@ -72,7 +72,7 @@ export const Transition: NextComponentType<NextPageContext, null, Props> = ({
                   <div className='info'>
                     <H3 className='info-title' text={b.title} size='1rem' />
                     <Paragraph text={b.subTitle} size='0.5rem' />
-                    <Link href={`/blog/${b.id}`}>
+                    <Link href={`/blogs/${b.id}`}>
                       <RectangleButton className='button'>Read More</RectangleButton>
                     </Link>
                   </div>

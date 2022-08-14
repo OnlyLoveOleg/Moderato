@@ -5,11 +5,10 @@ export default class MyDocument extends Document {
   render(): JSX.Element {
     // html要素にdir属性を指定すると、文書全体の書字方向を示すことができる。
     // 日本語や英語などの場合は、左から右へ記述するので ltr を指定します。
-    // 以下の効かない
+    // nuxt.config.jsで設定しないとlocaleは取れない
     const { locale } = this.props.__NEXT_DATA__;
-    console.log(`;ldooodsjkakg:${locale}`);
     return (
-      <Html lang='ja' dir='ltr'>
+      <Html lang={locale} dir='ltr'>
         <Head>
           <link
             href='https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;900&display=swap'

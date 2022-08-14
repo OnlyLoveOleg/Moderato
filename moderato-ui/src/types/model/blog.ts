@@ -1,5 +1,5 @@
 import { BaseCMS } from '@/types/base';
-import { Category, Thumbnail, Author } from '@/types/model';
+import { Category, Thumbnail, Author, Tag } from '@/types/model';
 
 export interface Blog extends BaseCMS {
   /**
@@ -19,9 +19,13 @@ export interface Blog extends BaseCMS {
    */
   thumbnail?: Thumbnail;
   /**
-   * おすすめ
+   * おすすめ記事にするか
    */
   recommend: boolean;
+  /**
+   * 目次を表示させるか
+   */
+  tocVisible: boolean;
   /**
    * 作者
    */
@@ -30,4 +34,8 @@ export interface Blog extends BaseCMS {
    * ブログのカテゴリー
    */
   category: Category;
+  /**
+   * ブログのタグ
+   */
+  tags: Tag[];
 }

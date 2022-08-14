@@ -33,7 +33,7 @@ export const Recommend: NextComponentType<NextPageContext, null, Props> = ({
         return (
           <Wrapper className={`card ${className}`} key={b.id}>
             {/* image */}
-            <Link href={`/blog/${b.id}`} passHref>
+            <Link href={`/blogs/${b.id}`} passHref>
               <div className='card-header'>
                 <Image src={pickThumbnail(b)} layout='fill' objectFit='cover' alt='rover' />
               </div>

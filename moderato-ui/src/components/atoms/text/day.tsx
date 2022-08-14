@@ -14,10 +14,14 @@ type Props = {
 
 const Wrapper = styled.small``;
 
+/**
+ * 2022/08/15 これでやるか 時間はいらない
+ * @see https://day.js.org/docs/en/display/format
+ */
 export const Day: NextComponentType<NextPageContext, null, Props> = ({
   className = '',
   dayText,
 }) => {
-  console.log(`dayText${dayText}`); // 2022-08-08T13:33:55.758Z これでくる
-  return <Wrapper className={className}>{dayjs(dayText).format()}</Wrapper>;
+  // 2022-08-08T13:33:55.758Z これでくる
+  return <Wrapper className={className}>{dayjs(dayText).format('YYYY/DD/MM')}</Wrapper>;
 };

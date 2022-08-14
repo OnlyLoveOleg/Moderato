@@ -18,7 +18,17 @@ const Wrapper = styled.div`
     margin-bottom: 50px;
   }
 
-  .main-section {
+  .main {
+    width: 100%;
+    display: flex;
+
+    &-section {
+      flex-grow: 2;
+    }
+
+    &-toc {
+      flex-grow: 1;
+    }
   }
 `;
 
@@ -31,11 +41,10 @@ export const Detail: NextComponentType<NextPageContext, null, Props> = ({
   return (
     <Wrapper data-testid='blog-detail-tpl'>
       <TopSection title={blogDetail.title} thumbnail={pickThumbnail(blogDetail)} />
-      {/* section content */}
-      <MainSection className='main-section' blogDetail={blogDetail} />
-      {/* aside content */}
-      <TableContents toc={toc} />
-      {/* section footer */}
+      <div className='main'>
+        <MainSection className='main-section' blogDetail={blogDetail} />
+        {blogDetail.tocVisible && <TableContents className='main-toc' toc={toc} />}
+      </div>
       <RelatedSection className='related-section' blogs={sameCategoryBlogs} />
     </Wrapper>
   );
