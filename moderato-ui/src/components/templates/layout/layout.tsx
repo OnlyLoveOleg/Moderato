@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, WheelEvent } from 'react';
 import { NextComponentType, NextPageContext } from 'next';
+import { useRouter } from 'next/router';
 
 import { Header, Footer } from '@/components/molecules/common';
 import styled from 'styled-components';
@@ -35,8 +36,9 @@ export const Layout: NextComponentType<NextPageContext, null, LayoutProps> = ({
   children,
 }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isActive, setIsActive] = useState(false);
   const layoutRef = useRef<HTMLDivElement>(null);
-  // const router = useRouter();
+  const router = useRouter();
 
   const onToggleMenu = () => {
     if (isMenuOpen) {
@@ -52,6 +54,8 @@ export const Layout: NextComponentType<NextPageContext, null, LayoutProps> = ({
   //     onClickCloseMenu();
   //   }
   // };
+
+  // useEffect(() => {}, [router]);
 
   useEffect(() => {
     if (!enableSmoothScroll) {
@@ -113,7 +117,7 @@ export const Layout: NextComponentType<NextPageContext, null, LayoutProps> = ({
       ref={layoutRef}
       onContextMenu={(e) => disableRightClick && e.preventDefault()}
     >
-      <Header isOpen={isMenuOpen} onToggleMenu={() => onToggleMenu()} />
+      <Header isOpen={isMenuOpen} isActive={isActive} onToggleMenu={() => onToggleMenu()} />
       <MainWrap>{children}</MainWrap>
       {showFooter && <Footer className='footer' />}
     </Wrapper>

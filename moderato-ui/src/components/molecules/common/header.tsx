@@ -9,6 +9,7 @@ import { displayFlex } from '@/styles/styled-components/global';
 type Props = {
   className?: string;
   isOpen: boolean;
+  isActive: boolean;
   onToggleMenu: () => void;
 };
 
@@ -38,13 +39,19 @@ const ItemWrap = styled.div`
 export const Header: NextComponentType<NextPageContext, null, Props> = ({
   className = '',
   isOpen,
+  isActive,
   onToggleMenu,
 }) => {
   return (
     <Wrapper className={className} data-testid='header'>
       <ItemWrap>
         <H1 className='logo-title' text='naohito-T.blog.com' size='2rem' />
-        <Hamburger className='hamburger' isOpen={isOpen} onToggleMenu={onToggleMenu} />
+        <Hamburger
+          className='hamburger'
+          isOpen={isOpen}
+          isActive={isActive}
+          onToggleMenu={onToggleMenu}
+        />
       </ItemWrap>
     </Wrapper>
   );
