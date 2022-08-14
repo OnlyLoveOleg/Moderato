@@ -4,7 +4,7 @@ import { HomeAPI } from '@/libs/apis';
 import { Detail as DetailTpl, Layout } from '@/components/templates';
 
 import 'highlight.js/styles/hybrid.css';
-import { convertHighlight } from '@/libs/highlight';
+import { convertHighlight, extractHeading } from '@/libs/parser';
 
 interface PathParams extends ParsedUrlQuery {
   slug: string;
@@ -24,23 +24,24 @@ export const getStaticProps = async (context: GetStaticPropsContext<PathParams>)
   /** 同カテゴリのblog */
   const blogDetail = await HomeAPI.fetchBlogDetail(id);
   blogDetail.content = convertHighlight(blogDetail.content);
-
+  const toc = extractHeading(blogDetail.content);
   const sameCategoryBlogs = await HomeAPI.fetchSameCategoryBlogList(blogDetail.category.id);
 
   return {
     props: {
       blogDetail,
       sameCategoryBlogs,
+      toc,
     },
   };
 };
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>;
 
-const BlogDetail: NextPage<Props> = ({ blogDetail, sameCategoryBlogs }) => {
+const BlogDetail: NextPage<Props> = ({ blogDetail, sameCategoryBlogs, toc }) => {
   return (
     <Layout showFooter={true} disableRightClick={true}>
-      <DetailTpl blogDetail={blogDetail} sameCategoryBlogs={sameCategoryBlogs} />
+      <DetailTpl blogDetail={blogDetail} sameCategoryBlogs={sameCategoryBlogs} toc={toc} />
     </Layout>
   );
 };

@@ -13,7 +13,6 @@ const Wrapper = styled.section`
 
 /** 全体の設定 */
 export const MainSection: NextComponentType<NextPageContext, null, Props> = ({ blogDetail }) => {
-  console.log(`blogDetail${blogDetail.content}`);
   return (
     <Wrapper>
       <h1>{blogDetail?.title}</h1>
