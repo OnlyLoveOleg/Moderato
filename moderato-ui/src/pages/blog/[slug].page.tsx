@@ -34,7 +34,7 @@ type Props = InferGetStaticPropsType<typeof getStaticProps>;
 
 const BlogDetail: NextPage<Props> = ({ blogDetail, sameCategoryBlogs }) => {
   return (
-    <Layout showFooter={true}>
+    <Layout showFooter={true} disableRightClick={true}>
       <DetailTpl blogDetail={blogDetail} sameCategoryBlogs={sameCategoryBlogs} />
     </Layout>
   );

@@ -8,6 +8,7 @@ const AppGSAP = import('@/libs/animation').then((mod) => new mod.AppGSAP());
 
 type LayoutProps = {
   enableSmoothScroll?: boolean;
+  disableRightClick?: boolean; // 右クリックを禁止するか default false
   showFooter?: boolean;
   readonly children: Required<React.ReactNode>;
 };
@@ -29,6 +30,7 @@ const MainWrap = styled.main``;
  */
 export const Layout: NextComponentType<NextPageContext, null, LayoutProps> = ({
   enableSmoothScroll = false,
+  disableRightClick = false,
   showFooter = true,
   children,
 }) => {
@@ -104,7 +106,13 @@ export const Layout: NextComponentType<NextPageContext, null, LayoutProps> = ({
   }, []);
 
   return (
-    <Wrapper className='layout' data-testid='layout' id='main-container' ref={layoutRef}>
+    <Wrapper
+      className='layout'
+      data-testid='layout'
+      id='main-container'
+      ref={layoutRef}
+      onContextMenu={(e) => disableRightClick && e.preventDefault()}
+    >
       <Header isOpen={isMenuOpen} onToggleMenu={() => onToggleMenu()} />
       <MainWrap>{children}</MainWrap>
       {showFooter && <Footer className='footer' />}

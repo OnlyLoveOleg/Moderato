@@ -8,16 +8,11 @@ export const useApp = () => {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
-  // const delay = (ms: number) =>
-  //   new Promise((r) => {
-  //     setTimeout(r, ms);
-  //   });
-
-  /**
-   * @desc error ハンドリングをしないといけない。
-   */
+  // TODO
+  // 1. errorハンドリング
+  // 2. about pageが早すぎるためdelayする
   useEffect(() => {
-    router.events.on('routeChangeStart', async () => {
+    router.events.on('routeChangeStart', () => {
       setIsLoading(true);
       // await delay(200);
     });
@@ -26,9 +21,7 @@ export const useApp = () => {
       setIsLoading(false);
     });
 
-    router.events.on('routeChangeError', () => {
-
-    });
+    router.events.on('routeChangeError', () => {});
   }, []);
 
   return {

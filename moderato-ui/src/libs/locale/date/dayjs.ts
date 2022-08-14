@@ -1,3 +1,6 @@
+// https://www.wakuwakubank.com/posts/743-javascript-dayjs/
+// https://zenn.dev/saki/articles/cbb097a495fcf5
+// https://www.wakuwakubank.com/posts/743-javascript-dayjs/
 import day from 'dayjs';
 import utc from 'dayjs/plugin/utc';
 import timezone from 'dayjs/plugin/timezone';

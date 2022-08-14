@@ -65,7 +65,7 @@ const Top: NextPage<Props> = ({
   infraBlogs,
 }) => {
   return (
-    <Layout showFooter={true}>
+    <Layout showFooter={true} disableRightClick={true}>
       <TopTpl
         recommendBlogs={recommendBlogs}
         latestBlogs={latestBlogs}

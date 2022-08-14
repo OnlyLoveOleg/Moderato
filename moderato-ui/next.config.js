@@ -13,6 +13,10 @@ const nextConfig = {
     // TODO: 以下を開発環境では削除しない
     // removeConsole: true,
   },
+  i18n: {
+    locales: ['en', 'ja'],
+    defaultLocale: 'ja',
+  },
 };
 
 module.exports = nextConfig;

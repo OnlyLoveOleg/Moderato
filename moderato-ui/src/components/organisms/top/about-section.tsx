@@ -1,13 +1,17 @@
 import { NextComponentType, NextPageContext } from 'next';
 import dynamic from 'next/dynamic';
 import styled from 'styled-components';
-// import { FadeInH2 } from '@/components/molecules/animation';
-import { H2Props } from '@/components/molecules/animation';
+import { FadeInH2Types, FadeInCharType } from '@/components/molecules/animation';
 import { Vertical } from '@/components/atoms/line';
 import { posUppLeft } from '@/styles/styled-components/global';
 
-const FadeInH2 = dynamic<H2Props>(
+const FadeInH2 = dynamic<FadeInH2Types>(
   () => import('@/components/molecules/animation').then((module) => module.FadeInH2),
+  { ssr: false },
+);
+
+const FadeInChar = dynamic<FadeInCharType>(
+  () => import('@/components/molecules/animation').then((module) => module.FadeInChar),
   { ssr: false },
 );
 
@@ -36,6 +40,9 @@ export const AboutSection: NextComponentType<NextPageContext, null, Props> = ({ 
     <Wrapper className={className}>
       <Vertical className='vertical-line' />
       <FadeInH2 text='ABOUT ME' size='3rem' direction='up' />
+      <section id='souseki'>
+        <FadeInChar section='souseki'>吾輩は猫である</FadeInChar>
+      </section>
     </Wrapper>
   );
 };

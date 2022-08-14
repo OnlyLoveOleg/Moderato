@@ -7,7 +7,7 @@ import { domSelect } from '@/utils/dom';
 import { AppGSAP } from '@/libs/animation';
 import { displayFlex } from '@/styles/styled-components/global';
 
-export type H2Props = {
+export type FadeInH2Types = {
   className?: string;
   text: string;
   direction?: string;
@@ -24,7 +24,7 @@ const Wrapper = styled.div`
 `;
 // forward ref 問題
 // @see https://www.gaji.jp/blog/2021/01/08/6247/
-export const FadeInH2: NextComponentType<NextPageContext, null, H2Props> = ({
+export const FadeInH2: NextComponentType<NextPageContext, null, FadeInH2Types> = ({
   className = '',
   text,
   size = '2rem',

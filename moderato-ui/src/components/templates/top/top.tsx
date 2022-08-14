@@ -17,7 +17,7 @@ import { RecommendSection, AboutSection, LatestSection } from '@/components/orga
 const Wrapper = styled.div`
   width: 100%;
   background: ${(props): string => props.theme.white};
-  overflow-x: hidden; // HOMEは横スクロールなどが多いため
+  /* overflow-x: hidden; // HOMEは横スクロールなどが多いため */
 `;
 
 const TopSection = styled.section`

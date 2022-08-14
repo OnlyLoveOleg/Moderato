@@ -1,7 +1,14 @@
 import { NextComponentType, NextPageContext } from 'next';
 import styled from 'styled-components';
 import { H2, H3 } from '@/components/atoms/heading';
+import dynamic from 'next/dynamic';
+import { AnimationByOneCharType } from '@/components/molecules/animation';
 import { posUppLeft, MediaSP } from '@/styles/styled-components/global';
+
+const ByOneChar = dynamic<AnimationByOneCharType>(
+  () => import('@/components/molecules/animation').then((module) => module.AnimationByOneChar),
+  { ssr: false },
+);
 
 const AboutDesc = styled.div`
   color: ${(props) => props.theme.white};
@@ -47,8 +54,6 @@ const AboutDesc = styled.div`
   `}
 `;
 
-// どこかで管理する？
-
 export const Desc: NextComponentType<NextPageContext> = () => {
   return (
     <AboutDesc date-testid='about-desc'>
@@ -58,7 +63,7 @@ export const Desc: NextComponentType<NextPageContext> = () => {
         size='1rem'
         text='My mission is to write coding as beautifully as design and to make the whole team excited!'
       />
-      <p className='desc ja'>
+      {/* <p className='desc ja'>
         千葉出身。都内（銀座）での美容師経験があるソフトウェアエンジニア。モデル撮影のために購入したmacを使っていたらPCの仕組みが気になり始め、気づいたらエンジニアに。人生まるごとクリエイティブだと思っている。人の髪をデザインしていた経験をIT業界へ活かせることはないか日々模索中。
       </p>
       <p className='desc en'>
@@ -67,7 +72,17 @@ export const Desc: NextComponentType<NextPageContext> = () => {
         and he found himself becoming an engineer. He believes that one&apos;s entire life is
         creative. He is always looking for ways to apply his experience in designing people&apos;s
         hair to the IT industry.
-      </p>
+      </p> */}
+      <ByOneChar id='souseki' className='desc ja'>
+        千葉出身。都内（銀座）での美容師経験があるウェブエンジニア。モデル撮影のために購入したmacを使っていたらPCの仕組みが気になり始め、気づいたらエンジニアに。人生まるごとクリエイティブだと思っている。人の髪をデザインしていた経験をIT業界へ活かせることはないか日々模索中。
+      </ByOneChar>
+      <ByOneChar id='souseki2' className='desc en'>
+        Born in Japan. Software engineer with experience as a beautician in Tokyo (Ginza). When he
+        was using a mac he bought for a model shoot, he started to be interested in how PCs work,
+        and he found himself becoming an engineer. He believes that one&apos;s entire life is
+        creative. He is always looking for ways to apply his experience in designing people&apos;s
+        hair to the IT industry.
+      </ByOneChar>
     </AboutDesc>
   );
 };

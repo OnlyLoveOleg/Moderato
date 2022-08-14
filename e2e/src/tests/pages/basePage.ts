@@ -60,10 +60,6 @@ export abstract class BasePageModel {
    * @desc 現在のPage Object URLと最初に設定したPage URLに相違がないか
    */
   public get isCurrentPage(): boolean {
-    // $pageurl http://localhost:3000/
-    // $path localhost:3000/
-    console.log(`$pageurl ${this.page.url()}`);
-    console.log(`$path ${this.path}`);
     return this.page.url() === this.path;
   }
 

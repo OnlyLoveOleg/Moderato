@@ -2,6 +2,11 @@
  * time-remap
  * タイムリマップとは
  * @see https://ics.media/entry/7162/
+ *
+ * duration: 存続期間（gsapだとアニメーションの時間）
+ * delay: 遅延
+ * repeat: -1は無限の意味
+ * distance: 距離
  */
 
 // const tl = gsap.timeline({ repeat: -1 });
@@ -40,6 +45,54 @@ export const sequentialAnimation = (gsap: GSAP, el: string) => {
     stagger: {
       from: 'start', //左側から
       amount: 0.8, // 0.8秒おきに
+    },
+  });
+
+  return tween;
+};
+
+/**
+ * @desc textが一文字ずつ出現する
+ */
+export const byOneChar = (
+  gsap: GSAP,
+  el: string,
+  numText: number,
+  text: string,
+  parentEl?: string,
+) => {
+  const tween = gsap.to(parentEl ? `${parentEl} ${el}` : el, {
+    duration: numText * 0.03, // アニメーション時間
+    text: {
+      value: text,
+    },
+    ease: 'none',
+  });
+
+  return tween;
+};
+
+/**
+ * @desc tween = scrollByOneChar()
+ *       tween.play()
+ */
+export const scrollByOneChar = (
+  gsap: GSAP,
+  el: string,
+  numText: number,
+  text: string,
+  parentEl?: string,
+) => {
+  const tween = gsap.to(parentEl ? `${parentEl} ${el}` : el, {
+    duration: numText * 0.03, // アニメーション時間
+    text: {
+      value: text,
+    },
+    ease: 'none',
+    scrollTrigger: {
+      trigger: parentEl ?? el, // 上にラップするものがなければelを対象にする
+      start: 'top 40%',
+      end: 'bottom 40%',
     },
   });
 
