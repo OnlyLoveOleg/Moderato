@@ -1,10 +1,18 @@
 import { NextComponentType, NextPageContext } from 'next';
+import dynamic from 'next/dynamic';
+
 import styled from 'styled-components';
 
 import { H1 } from '@/components/atoms/heading';
 import { Hamburger } from '@/components/atoms/button';
 
 import { displayFlex } from '@/styles/styled-components/global';
+import { CircleBounceType } from '@/components/molecules/animation';
+
+const CircleBounce = dynamic<CircleBounceType>(
+  () => import('@/components/molecules/animation').then((module) => module.CircleBounce),
+  { ssr: false },
+);
 
 type Props = {
   className?: string;
@@ -26,9 +34,14 @@ const ItemWrap = styled.div`
   ${displayFlex({ justifyContent: 'space-between', flexDirection: 'row' })};
   height: 100%;
 
-  .logo-title {
-    color: ${(props) => props.theme.white};
-    margin: 0 1rem;
+  .item {
+    ${displayFlex({ justifyContent: 'space-between', flexDirection: 'row' })};
+    padding-left: 0.8rem;
+
+    .logo-title {
+      color: ${(props) => props.theme.white};
+      margin: 0 1rem;
+    }
   }
 
   .hamburger {
@@ -45,7 +58,10 @@ export const Header: NextComponentType<NextPageContext, null, Props> = ({
   return (
     <Wrapper className={className} data-testid='header'>
       <ItemWrap>
-        <H1 className='logo-title' text='naohito-T.blog.com' size='2rem' />
+        <div className='item'>
+          <CircleBounce id='circle-bounce' />
+          <H1 className='logo-title' text='naohito-T.blog.com' size='2rem' />
+        </div>
         <Hamburger
           className='hamburger'
           isOpen={isOpen}

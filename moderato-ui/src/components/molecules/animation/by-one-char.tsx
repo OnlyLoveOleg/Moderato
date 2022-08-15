@@ -20,7 +20,7 @@ export const AnimationByOneChar: NextComponentType<
   NextPageContext,
   null,
   AnimationByOneCharType
-> = ({ children, id, className = '', enableScrollTrigger = false }: AnimationByOneCharType) => {
+> = ({ children, id, className = '', enableScrollTrigger = false }) => {
   const { textRef } = useByOneChar(id, enableScrollTrigger);
 
   return (
