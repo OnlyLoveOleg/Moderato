@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, WheelEvent } from 'react';
 import { NextComponentType, NextPageContext } from 'next';
-import { useRouter } from 'next/router';
+// import { useRouter } from 'next/router';
 
 import { Header, Footer } from '@/components/molecules/common';
 import styled from 'styled-components';
@@ -38,7 +38,9 @@ export const Layout: NextComponentType<NextPageContext, null, LayoutProps> = ({
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isActive, setIsActive] = useState(false);
   const layoutRef = useRef<HTMLDivElement>(null);
-  const router = useRouter();
+
+  console.log(`${setIsActive}`);
+  // const router = useRouter();
 
   const onToggleMenu = () => {
     if (isMenuOpen) {

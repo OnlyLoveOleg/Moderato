@@ -1,3 +1,3 @@
 // recommend で使うtag
 export * from './category';
-export * from './tag';
+export * from './icon-tag';

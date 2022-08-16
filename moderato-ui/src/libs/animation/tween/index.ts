@@ -52,7 +52,7 @@ export const sequentialAnimation = (gsap: GSAP, el: string) => {
 };
 
 /**
- * @desc textが一文字ずつ出現する
+ * @desc textが一文字ずつ出現する about pageで使用
  */
 export const byOneChar = (
   gsap: GSAP,
@@ -100,9 +100,8 @@ export const scrollByOneChar = (
 };
 
 /**
- * @desc 上からポヨンと落ちてくるanimation
+ * @desc 上からポヨンと落ちてくるanimation header見れば分かる
  */
-
 export const bounceRepeat = (gsap: GSAP, id: string) => {
   const tween = gsap.to(`#${id}`, {
     autoAlpha: 1,
@@ -112,5 +111,25 @@ export const bounceRepeat = (gsap: GSAP, id: string) => {
     repeat: -1,
     repeatDelay: 3,
   });
+  return tween;
+};
+
+/**
+ * @desc 下から
+ */
+
+export const expoInFromBottom = (gsap: GSAP, id: string) => {
+  const tween = gsap.to(`#${id}`, {
+    autoAlpha: 1,
+    duration: 2,
+    y: 0,
+    ease: 'expo',
+    scrollTrigger: {
+      trigger: `#${id}`,
+      start: 'top 40%',
+      end: 'bottom 40%',
+    },
+  });
+
   return tween;
 };

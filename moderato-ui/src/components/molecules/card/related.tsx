@@ -3,12 +3,12 @@ import { Blog } from '@/types/model';
 import Image from 'next/image';
 import Link from 'next/link';
 import styled from 'styled-components';
-import { displayFlex } from '@/styles/styled-components/global';
+import { displayFlex, MediaSP } from '@/styles/styled-components/global';
 import { pickThumbnail } from '@/composable/helper';
-import { Category as CategoryTag } from '@/components/atoms/tag';
+import { Category as CategoryTag, IconTag } from '@/components/atoms/tag';
 import { UserIcon } from '@/components/atoms/icon';
 import { H4, H5 } from '@/components/atoms/heading';
-import { Paragraph, Day } from '@/components/atoms/text';
+import { Day } from '@/components/atoms/text';
 
 type Props = {
   className?: string;
@@ -18,7 +18,7 @@ type Props = {
 const Wrapper = styled.div`
   ${displayFlex({
     justifyContent: 'space-evenly',
-    alignItems: 'flex-start;',
+    alignItems: 'flex-start',
     flexDirection: 'row',
   })};
   flex-wrap: wrap;
@@ -34,42 +34,53 @@ const Wrapper = styled.div`
 
     &-header {
       width: 100%;
-      height: 200px;
+      height: 250px;
       object-fit: cover;
       cursor: pointer;
     }
+
+    &-body {
+      ${displayFlex({
+        justifyContent: 'space-around',
+        alignItems: 'flex-start',
+      })};
+      padding: 10px;
+      min-height: 200px;
+
+      &-tag {
+        ${displayFlex({
+          justifyContent: 'center',
+          alignItems: 'center',
+          flexDirection: 'row',
+        })};
+      }
+
+      &-user {
+        ${displayFlex({
+          justifyContent: 'flex-start',
+          alignItems: 'center',
+          flexDirection: 'row',
+        })};
+        width: 100%;
+
+        &__author {
+          margin: 0 1rem;
+        }
+
+        &__day {
+          color: #545d7a;
+        }
+      }
+    }
   }
 
-  .card-body {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    padding: 20px;
-    min-height: 250px;
-  }
+  ${MediaSP`
+    ${displayFlex({ flexDirection: 'column' })};
 
-  .card-body p {
-    font-size: 13px;
-    margin: 0 0 40px;
-  }
-  .user {
-    display: flex;
-    margin-top: auto;
-  }
-
-  .user img {
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    margin-right: 10px;
-  }
-  .user-info h5 {
-    margin: 0;
-  }
-  .user-info small {
-    color: #545d7a;
-  }
+    .card {
+      width: 100%;
+    }
+  `}
 `;
 
 /**
@@ -81,9 +92,10 @@ export const Related: NextComponentType<NextPageContext, null, Props> = ({
 }) => {
   return (
     <Wrapper className={className}>
-      {blogs.map((b, i) => {
+      {blogs.map((b) => {
         return (
-          <article className='card' key={i}>
+          <article className='card' key={b.id}>
+            {/* header */}
             <div className='card-header'>
               <Link href={`/blogs/${b.id}`}>
                 {/* <a> これ入れないとerrorが出るが画像が表示されない */}
@@ -91,25 +103,27 @@ export const Related: NextComponentType<NextPageContext, null, Props> = ({
                 {/* </a> */}
               </Link>
             </div>
-
+            {/* body */}
             <div className='card-body'>
-              {/* id検索でblogを絞り込む */}
-              <Link href={`/category/#${b.category.id}`}>
-                <a>
-                  <CategoryTag text={b.category.name} />
-                </a>
-              </Link>
-              <H4 size='1.5rem' text={b.title} />
-              <Paragraph size='2rem' text={b.subTitle} />
-
-              <div className='user'>
-                <Link href={'/about'}>
+              {/* /category pageページでは id検索でblogを絞り込む */}
+              <div className='card-body-tag'>
+                <Link href={`/category/#${b.category.id}`}>
                   <a>
-                    <UserIcon author={b.author} height={'48px'} width={'48px'} />
+                    <CategoryTag themeColor={b.category.theme.hex6Color} text={b.category.name} />
                   </a>
                 </Link>
-                <H5 size='1rem' text={b.author.name} />
-                <Day dayText={b.updatedAt} />
+                <IconTag tags={b.tags} />
+              </div>
+
+              <H4 size='1.5rem' text={b.title} />
+              <div className='card-body-user'>
+                <Link href={'/about'}>
+                  <a>
+                    <UserIcon author={b.author} height={'64px'} width={'64px'} />
+                  </a>
+                </Link>
+                <H5 className='card-body-user__author' size='1rem' text={b.author.name} />
+                <Day className='card-body-user__day' dayText={b.updatedAt} />
               </div>
             </div>
           </article>

@@ -14,14 +14,15 @@ const Wrapper = styled.div<Omit<Props, 'className' | 'author'>>`
   position: relative;
   height: ${(props) => props.height};
   width: ${(props) => props.width};
-  border-radius: 50%;
+
+  .icon {
+    border-radius: 50%;
+  }
 `;
 
 /**
- * @desc 責務としては 丸のアイコン に画像を当てはめる
- *  サイズは指定可能
+ * @desc 丸い縁の中に指定の画像をはめる（size指定可能）
  */
-
 export const UserIcon: NextComponentType<NextPageContext, null, Props> = ({
   className = '',
   author,
@@ -30,7 +31,13 @@ export const UserIcon: NextComponentType<NextPageContext, null, Props> = ({
 }) => {
   return (
     <Wrapper className={className} height={height} width={width}>
-      <Image src={author.image.url} alt={author.name} layout='fill' objectFit='cover' />
+      <Image
+        className='icon'
+        src={author.image.url}
+        alt={author.name}
+        layout='fill'
+        objectFit='cover'
+      />
     </Wrapper>
   );
 };

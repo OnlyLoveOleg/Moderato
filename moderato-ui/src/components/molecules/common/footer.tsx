@@ -17,7 +17,7 @@ const Wrapper = styled.footer`
 
 export const Footer: NextComponentType<NextPageContext, null, Props> = ({ className = '' }) => {
   return (
-    <Wrapper className={className} data-testid='footer'>
+    <Wrapper id='footer' className={className} data-testid='footer'>
       <H2 text='WORK CONTACT' size='2rem' />
       <H2 text='NAOHITO-T' size='2rem' />
     </Wrapper>

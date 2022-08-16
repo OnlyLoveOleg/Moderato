@@ -5,10 +5,6 @@
 
 export interface Theme {
   /**
-   * color name
-   */
-  name: string;
-  /**
    * color（HEX単位） HEX6桁
    */
   hex6Color: string;

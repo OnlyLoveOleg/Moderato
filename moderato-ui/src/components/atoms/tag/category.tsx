@@ -3,33 +3,29 @@ import styled from 'styled-components';
 
 type Props = {
   className?: string;
+  themeColor: string;
   text: string;
 };
 
-const Wrapper = styled.span`
-  background: #cccccc;
+const Wrapper = styled.span<Omit<Props, 'className' | 'text'>>`
+  background: ${(props) => props.themeColor};
   border-radius: 50px;
-  font-size: 12px;
-  margin: 0;
+  cursor: pointer;
   color: #fff;
+  font-size: 0.8rem;
   padding: 2px 10px;
   text-transform: uppercase;
-  cursor: pointer;
-
-  .tag-teal {
-    background-color: #47bcd4;
-  }
-  .tag-purple {
-    background-color: #5e76bf;
-  }
-  .tag-pink {
-    background-color: #cd5b9f;
-  }
+  vertical-align: initial; // 何か効いてため初期化
 `;
 
 export const Category: NextComponentType<NextPageContext, null, Props> = ({
   className = '',
+  themeColor,
   text,
 }) => {
-  return <Wrapper className={className}>{text}</Wrapper>;
+  return (
+    <Wrapper className={className} themeColor={themeColor}>
+      {text}
+    </Wrapper>
+  );
 };
