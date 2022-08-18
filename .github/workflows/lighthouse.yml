@@ -33,11 +33,17 @@ jobs:
             ${{ runner.os }}-yarn-
             ${{ runner.os }}-
 
-      - name: Build Apps
+      - name: Create env file
         working-directory: moderato-ui
+        run: |
+          echo MICRO_CMS_DOMAIN=$MICRO_CMS_DOMAIN > .env
+          echo MICRO_CMS_API_KEY=$MICRO_CMS_API_KEY >> .env
         env:
           MICRO_CMS_DOMAIN: ${{ secrets.MICRO_CMS_DOMAIN }}
           MICRO_CMS_API_KEY: ${{ secrets.MICRO_CMS_API_KEY }}
+
+      - name: Build Apps
+        working-directory: moderato-ui
         run: |
           yarn
           yarn build
