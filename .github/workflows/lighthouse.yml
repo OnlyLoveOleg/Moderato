@@ -33,6 +33,12 @@ jobs:
             ${{ runner.os }}-yarn-
             ${{ runner.os }}-
 
+      - name: Create env
+        working-directory: moderato-ui
+        run: |
+          echo MICRO_CMS_DOMAIN=$MICRO_CMS_DOMAIN > .env
+          echo MICRO_CMS_API_KEY=$MICRO_CMS_API_KEY >> .env
+
       - name: Build Apps
         working-directory: moderato-ui
         run: |
@@ -40,6 +46,7 @@ jobs:
           yarn build
 
       - name: Run Lighthouse CI
+        working-directory: moderato-ui
         run: |
           npm install -g @lhci/cli@0.4.x
           lhci autorun
