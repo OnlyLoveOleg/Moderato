@@ -1,0 +1,45 @@
+name: Frontend lighthouse CI
+
+on:
+  pull_request:
+    paths:
+      - "moderato-ui/**"
+
+jobs:
+  lhci:
+    name: lighthouse
+    strategy:
+      matrix:
+        node-version: [14.17.0]
+        os: [ubuntu-22.04]
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Use Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Cache node_modules
+        uses: actions/cache@v1
+        id: cache-node-modules
+        with:
+          path: ~/.cache/yarn
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+            ${{ runner.os }}-
+
+      - name: Build Apps
+        working-directory: moderato-ui
+        run: |
+          yarn
+          yarn build
+
+      - name: Run Lighthouse CI
+        run: |
+          npm install -g @lhci/cli@0.4.x
+          lhci autorun
