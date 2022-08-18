@@ -1,6 +1,7 @@
 import gsap from 'gsap';
+// TODO 以下のdistにしないとerrorになる記事
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
-import { TextPlugin } from 'gsap/TextPlugin';
+import { TextPlugin } from 'gsap/dist/TextPlugin';
 // https://devsakaso.com/gsap-non-loop-slider/
 
 /**
