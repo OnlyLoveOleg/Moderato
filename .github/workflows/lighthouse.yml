@@ -38,6 +38,7 @@ jobs:
         run: |
           echo MICRO_CMS_DOMAIN=$MICRO_CMS_DOMAIN > .env
           echo MICRO_CMS_API_KEY=$MICRO_CMS_API_KEY >> .env
+          cat .env
 
       - name: Build Apps
         working-directory: moderato-ui
