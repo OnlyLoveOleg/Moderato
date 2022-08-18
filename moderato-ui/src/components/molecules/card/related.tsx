@@ -3,8 +3,12 @@ import { Blog } from '@/types/model';
 import Image from 'next/image';
 import Link from 'next/link';
 import styled from 'styled-components';
-import { displayFlex } from '@/styles/styled-components/global';
-import { DefBlogToImg } from '@/config';
+import { displayFlex, MediaSP } from '@/styles/styled-components/global';
+import { pickThumbnail } from '@/composable/helper';
+import { Category as CategoryTag, IconTag } from '@/components/atoms/tag';
+import { UserIcon } from '@/components/atoms/icon';
+import { H4, H5 } from '@/components/atoms/heading';
+import { Day } from '@/components/atoms/text';
 
 type Props = {
   className?: string;
@@ -14,7 +18,7 @@ type Props = {
 const Wrapper = styled.div`
   ${displayFlex({
     justifyContent: 'space-evenly',
-    alignItems: 'flex-start;',
+    alignItems: 'flex-start',
     flexDirection: 'row',
   })};
   flex-wrap: wrap;
@@ -27,62 +31,56 @@ const Wrapper = styled.div`
     box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
     overflow: hidden;
     width: 45%;
-  }
-  .card-header img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-  }
-  .card-body {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    padding: 20px;
-    min-height: 250px;
+
+    &-header {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      cursor: pointer;
+    }
+
+    &-body {
+      ${displayFlex({
+        justifyContent: 'space-around',
+        alignItems: 'flex-start',
+      })};
+      padding: 10px;
+      min-height: 200px;
+
+      &-tag {
+        ${displayFlex({
+          justifyContent: 'center',
+          alignItems: 'center',
+          flexDirection: 'row',
+        })};
+      }
+
+      &-user {
+        ${displayFlex({
+          justifyContent: 'flex-start',
+          alignItems: 'center',
+          flexDirection: 'row',
+        })};
+        width: 100%;
+
+        &__author {
+          margin: 0 1rem;
+        }
+
+        &__day {
+          color: #545d7a;
+        }
+      }
+    }
   }
 
-  .tag {
-    background: #cccccc;
-    border-radius: 50px;
-    font-size: 12px;
-    margin: 0;
-    color: #fff;
-    padding: 2px 10px;
-    text-transform: uppercase;
-    cursor: pointer;
-  }
-  .tag-teal {
-    background-color: #47bcd4;
-  }
-  .tag-purple {
-    background-color: #5e76bf;
-  }
-  .tag-pink {
-    background-color: #cd5b9f;
-  }
+  ${MediaSP`
+    ${displayFlex({ flexDirection: 'column' })};
 
-  .card-body p {
-    font-size: 13px;
-    margin: 0 0 40px;
-  }
-  .user {
-    display: flex;
-    margin-top: auto;
-  }
-
-  .user img {
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    margin-right: 10px;
-  }
-  .user-info h5 {
-    margin: 0;
-  }
-  .user-info small {
-    color: #545d7a;
-  }
+    .card {
+      width: 100%;
+    }
+  `}
 `;
 
 /**
@@ -92,48 +90,40 @@ export const Related: NextComponentType<NextPageContext, null, Props> = ({
   className = '',
   blogs,
 }) => {
-  const pickThumbnail = (blog: Blog): string => {
-    const thumbnail = blog.thumbnail?.url ?? blog.category.name;
-    switch (thumbnail) {
-      case 'design':
-        return DefBlogToImg.design;
-      case 'front':
-        return DefBlogToImg.front;
-      case 'server':
-        return DefBlogToImg.server;
-      case 'infra':
-        return DefBlogToImg.infra;
-      default:
-        return thumbnail;
-    }
-  };
   return (
     <Wrapper className={className}>
-      {blogs.map((b, i) => {
+      {blogs.map((b) => {
         return (
-          <article className='card' key={i}>
-            <div
-              className='card-header'
-              style={{ position: 'relative', width: '100p%', height: '200px' }}
-            >
-              <Link href={`/blog/${b.id}`}>
+          <article className='card' key={b.id}>
+            {/* header */}
+            <div className='card-header'>
+              <Link href={`/blogs/${b.id}`}>
+                {/* <a> これ入れないとerrorが出るが画像が表示されない */}
                 <Image src={pickThumbnail(b)} layout='fill' objectFit='cover' alt='rover' />
+                {/* </a> */}
               </Link>
             </div>
-
+            {/* body */}
             <div className='card-body'>
-              <span className='tag tag-teal'>Technology</span>
-              <h4>Why is the Tesla Cybertruck designed the way it is?</h4>
-              <p>An exploration into the truck&apos;s polarising design</p>
-              <div className='user'>
-                <img
-                  src='https://yt3.ggpht.com/a/AGF-l7-0J1G0Ue0mcZMw-99kMeVuBmRxiPjyvIYONg=s900-c-k-c0xffffffff-no-rj-mo'
-                  alt='user'
-                />
-                <div className='user-info'>
-                  <h5>July Dec</h5>
-                  <small>2h ago</small>
-                </div>
+              {/* /category pageページでは id検索でblogを絞り込む */}
+              <div className='card-body-tag'>
+                <Link href={`/category/#${b.category.id}`}>
+                  <a>
+                    <CategoryTag themeColor={b.category.theme.hex6Color} text={b.category.name} />
+                  </a>
+                </Link>
+                <IconTag tags={b.tags} />
+              </div>
+
+              <H4 size='1.5rem' text={b.title} />
+              <div className='card-body-user'>
+                <Link href={'/about'}>
+                  <a>
+                    <UserIcon author={b.author} height={'64px'} width={'64px'} />
+                  </a>
+                </Link>
+                <H5 className='card-body-user__author' size='1rem' text={b.author.name} />
+                <Day className='card-body-user__day' dayText={b.updatedAt} />
               </div>
             </div>
           </article>

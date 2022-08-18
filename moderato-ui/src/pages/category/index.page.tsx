@@ -2,40 +2,11 @@ import type { NextPage, InferGetStaticPropsType, GetStaticPropsContext } from 'n
 import { CategoryTpl, Layout } from '@/components/templates';
 import { HomeAPI } from '@/libs/apis';
 
-// type DefaultOptions = {
-//   e: string;
-//   name: string;
-// };
-
-// type DictionaryValue = {
-//   fileName: string;
-//   filePath: string;
-// };
-
-// type Dictionary = Map<Key, DictionaryValue>;
-
-// // https://webbibouroku.com/Blog/Article/js-map
-// const defaultOptions: Dictionary = new Map([
-//   [
-//     'e',
-//     {
-//       fileName: 'encrypted',
-//       filePath: '', // デフォルトではカレント
-//     },
-//   ],
-//   [
-//     'd',
-//     {
-//       fileName: 'decrypted',
-//       filePath: '',
-//     },
-//   ],
-// ]);
-
 /**
  * @desc カテゴリー一覧 page
  * categoryに紐づくblogを見せるpage
  * category の コンテンツidが必要でありそれでblog 一覧を取得する
+ * [slug]はなし。#id 検索で他pageから遷移してくる。
  */
 
 export const getStaticProps = async (context: GetStaticPropsContext) => {

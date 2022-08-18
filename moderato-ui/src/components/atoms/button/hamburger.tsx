@@ -58,17 +58,23 @@ const Nav = styled.nav`
     padding: 0;
     list-style: none;
   }
+
+  .nav-items li.active {
+    color: #bcac32;
+  }
 `;
 
 type HamburgerProps = {
   className?: string;
   isOpen: boolean;
+  isActive: boolean;
   onToggleMenu: () => void;
 };
 
 export const Hamburger: NextComponentType<NextPageContext, null, HamburgerProps> = ({
   className = '',
   isOpen,
+  isActive,
   onToggleMenu,
 }) => {
   return (
@@ -77,19 +83,19 @@ export const Hamburger: NextComponentType<NextPageContext, null, HamburgerProps>
         <ul className='nav-items'>
           <Link href={'/'} passHref>
             <a>
-              <li>HOME</li>
+              <li className={`${isActive ? 'active' : ''}`}>HOME</li>
             </a>
           </Link>
           {/* blog 一覧はまた今度 */}
           {/* <li>BLOG</li> */}
           <Link href={'/category'} passHref>
             <a>
-              <li>CATEGORY</li>
+              <li className={`${isActive ? 'active' : ''}`}>CATEGORY</li>
             </a>
           </Link>
           <Link href={'/about'} passHref>
             <a>
-              <li>ABOUT</li>
+              <li className={`${isActive ? 'active' : ''}`}>ABOUT</li>
             </a>
           </Link>
         </ul>

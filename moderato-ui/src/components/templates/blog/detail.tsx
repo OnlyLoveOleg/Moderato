@@ -2,45 +2,50 @@ import { NextComponentType, NextPageContext } from 'next';
 import { Blog } from '@/types/model';
 import styled from 'styled-components';
 import { TopSection, MainSection, RelatedSection } from '@/components/organisms/blog/detail';
-import { DefBlogToImg } from '@/config';
+import { pickThumbnail } from '@/composable/helper';
+import { TableOfContentsType } from '@/libs/parser';
+import { TableContents } from '@/components/molecules/common';
 
 type Props = {
   className?: string;
   blogDetail: Blog;
   sameCategoryBlogs: Blog[];
+  toc: TableOfContentsType[];
 };
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  .related-section {
+    margin-bottom: 50px;
+  }
+
+  .main {
+    width: 100%;
+    display: flex;
+
+    &-section {
+      flex-grow: 2;
+    }
+
+    &-toc {
+      flex-grow: 1;
+    }
+  }
+`;
 
 /** 全体の設定 */
 export const Detail: NextComponentType<NextPageContext, null, Props> = ({
   blogDetail,
   sameCategoryBlogs,
+  toc,
 }) => {
-  /** undefinedであればそのブログのカテゴリーからdefault画像を返す */
-  const pickThumbnail = (blog: Blog): string => {
-    const thumbnail = blog.thumbnail?.url ?? blog.category.name;
-    switch (thumbnail) {
-      case 'design':
-        return DefBlogToImg.design;
-      case 'front':
-        return DefBlogToImg.front;
-      case 'server':
-        return DefBlogToImg.server;
-      case 'infra':
-        return DefBlogToImg.infra;
-      default:
-        return thumbnail;
-    }
-  };
-
   return (
     <Wrapper data-testid='blog-detail-tpl'>
       <TopSection title={blogDetail.title} thumbnail={pickThumbnail(blogDetail)} />
-      {/* section content */}
-      <MainSection blogDetail={blogDetail} />
-      {/* section footer */}
-      <RelatedSection blogs={sameCategoryBlogs} />
+      <div className='main'>
+        <MainSection className='main-section' blogDetail={blogDetail} />
+        {blogDetail.tocVisible && <TableContents className='main-toc' toc={toc} />}
+      </div>
+      <RelatedSection className='related-section' blogs={sameCategoryBlogs} />
     </Wrapper>
   );
 };

@@ -8,6 +8,7 @@ import {
 } from './category'; // え、同階層のpath alias（@）はダメなの？
 import { mockThumbnail } from './thumbnail';
 import { mockAuthor } from './author';
+import { mockTsTag } from './tag';
 
 /**
  * mock design blog
@@ -18,10 +19,12 @@ export const mockDesignBlog: Blog = {
   subTitle: 'mock design subTitle',
   content:
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam dignissim diam id volutpat porttitor. Donec sed odio mi. Morbi at urna id lorem pharetra consequat. In ac lorem dapibus, consequat arcu nec, ullamcorper sem. Ut id lectus vitae diam malesuada posuere. Fusce posuere justo sed nunc imperdiet, a maximus risus cursus. Vestibulum et rutrum ligula, vel eleifend orci. Suspendisse bibendum turpis at turpis consectetur, in lobortis enim egestas. Pellentesque eleifend efficitur neque nec varius. Donec maximus eget mauris at maximus.',
-  category: mockDesignCategory,
   thumbnail: mockThumbnail,
-  author: mockAuthor,
   recommend: true,
+  tocVisible: true,
+  author: mockAuthor,
+  category: mockDesignCategory,
+  tags: [mockTsTag],
 };
 
 export const mockDesignBlogList: Blog[] = [
@@ -37,10 +40,12 @@ export const mockFrontBlog: Blog = {
   subTitle: 'mock front subTitle',
   content:
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam dignissim diam id volutpat porttitor. Donec sed odio mi. Morbi at urna id lorem pharetra consequat. In ac lorem dapibus, consequat arcu nec, ullamcorper sem. Ut id lectus vitae diam malesuada posuere. Fusce posuere justo sed nunc imperdiet, a maximus risus cursus. Vestibulum et rutrum ligula, vel eleifend orci. Suspendisse bibendum turpis at turpis consectetur, in lobortis enim egestas. Pellentesque eleifend efficitur neque nec varius. Donec maximus eget mauris at maximus.',
-  category: mockFrontCategory,
   thumbnail: mockThumbnail,
-  author: mockAuthor,
   recommend: true,
+  tocVisible: true,
+  author: mockAuthor,
+  category: mockFrontCategory,
+  tags: [mockTsTag],
 };
 
 export const mockFrontBlogList: Blog[] = [
@@ -56,10 +61,12 @@ export const mockServerBlog: Blog = {
   subTitle: 'mock server subTitle',
   content:
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam dignissim diam id volutpat porttitor. Donec sed odio mi. Morbi at urna id lorem pharetra consequat. In ac lorem dapibus, consequat arcu nec, ullamcorper sem. Ut id lectus vitae diam malesuada posuere. Fusce posuere justo sed nunc imperdiet, a maximus risus cursus. Vestibulum et rutrum ligula, vel eleifend orci. Suspendisse bibendum turpis at turpis consectetur, in lobortis enim egestas. Pellentesque eleifend efficitur neque nec varius. Donec maximus eget mauris at maximus.',
-  category: mockServerCategory,
   thumbnail: mockThumbnail,
-  author: mockAuthor,
   recommend: true,
+  tocVisible: true,
+  author: mockAuthor,
+  category: mockServerCategory,
+  tags: [mockTsTag],
 };
 
 export const mockServerBlogList: Blog[] = [
@@ -75,10 +82,12 @@ export const mockInfraBlog: Blog = {
   subTitle: 'mock infra subTitle',
   content:
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam dignissim diam id volutpat porttitor. Donec sed odio mi. Morbi at urna id lorem pharetra consequat. In ac lorem dapibus, consequat arcu nec, ullamcorper sem. Ut id lectus vitae diam malesuada posuere. Fusce posuere justo sed nunc imperdiet, a maximus risus cursus. Vestibulum et rutrum ligula, vel eleifend orci. Suspendisse bibendum turpis at turpis consectetur, in lobortis enim egestas. Pellentesque eleifend efficitur neque nec varius. Donec maximus eget mauris at maximus.',
-  category: mockInfraCategory,
   thumbnail: mockThumbnail,
-  author: mockAuthor,
   recommend: true,
+  tocVisible: true,
+  category: mockInfraCategory,
+  author: mockAuthor,
+  tags: [mockTsTag],
 };
 
 export const mockInfraBlogList: Blog[] = [

@@ -2,6 +2,11 @@
  * time-remap
  * タイムリマップとは
  * @see https://ics.media/entry/7162/
+ *
+ * duration: 存続期間（gsapだとアニメーションの時間）
+ * delay: 遅延
+ * repeat: -1は無限の意味
+ * distance: 距離
  */
 
 // const tl = gsap.timeline({ repeat: -1 });
@@ -40,6 +45,89 @@ export const sequentialAnimation = (gsap: GSAP, el: string) => {
     stagger: {
       from: 'start', //左側から
       amount: 0.8, // 0.8秒おきに
+    },
+  });
+
+  return tween;
+};
+
+/**
+ * @desc textが一文字ずつ出現する about pageで使用
+ */
+export const byOneChar = (
+  gsap: GSAP,
+  el: string,
+  numText: number,
+  text: string,
+  parentEl?: string,
+) => {
+  const tween = gsap.to(parentEl ? `${parentEl} ${el}` : el, {
+    duration: numText * 0.03, // アニメーション時間
+    text: {
+      value: text,
+    },
+    ease: 'none',
+  });
+
+  return tween;
+};
+
+/**
+ * @desc tween = scrollByOneChar()
+ *       tween.play()
+ */
+export const scrollByOneChar = (
+  gsap: GSAP,
+  el: string,
+  numText: number,
+  text: string,
+  parentEl?: string,
+) => {
+  const tween = gsap.to(parentEl ? `${parentEl} ${el}` : el, {
+    duration: numText * 0.03, // アニメーション時間
+    text: {
+      value: text,
+    },
+    ease: 'none',
+    scrollTrigger: {
+      trigger: parentEl ?? el, // 上にラップするものがなければelを対象にする
+      start: 'top 40%',
+      end: 'bottom 40%',
+    },
+  });
+
+  return tween;
+};
+
+/**
+ * @desc 上からポヨンと落ちてくるanimation header見れば分かる
+ */
+export const bounceRepeat = (gsap: GSAP, id: string) => {
+  const tween = gsap.to(`#${id}`, {
+    autoAlpha: 1,
+    duration: 2,
+    y: 0,
+    ease: 'bounce',
+    repeat: -1,
+    repeatDelay: 3,
+  });
+  return tween;
+};
+
+/**
+ * @desc 下から
+ */
+
+export const expoInFromBottom = (gsap: GSAP, id: string) => {
+  const tween = gsap.to(`#${id}`, {
+    autoAlpha: 1,
+    duration: 2,
+    y: 0,
+    ease: 'expo',
+    scrollTrigger: {
+      trigger: `#${id}`,
+      start: 'top 40%',
+      end: 'bottom 40%',
     },
   });
 

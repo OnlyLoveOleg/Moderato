@@ -11,13 +11,13 @@ import { Blog } from '@/types/model';
 //   { ssr: false },
 // );
 
-import { AboutSection } from '@/components/organisms/top';
+import { RecommendSection, AboutSection, LatestSection } from '@/components/organisms/top';
 
 /** 全体の設定 */
 const Wrapper = styled.div`
   width: 100%;
   background: ${(props): string => props.theme.white};
-  overflow-x: hidden; // HOMEは横スクロールなどが多いため
+  /* overflow-x: hidden; // HOMEは横スクロールなどが多いため */
 `;
 
 const TopSection = styled.section`
@@ -26,6 +26,7 @@ const TopSection = styled.section`
   background-position: center;
   background-size: cover;
   position: relative;
+  margin-bottom: 300px;
 `;
 
 type TopProps = {
@@ -38,21 +39,21 @@ type TopProps = {
 };
 // @TODO: パララックス
 //        横スクロール
-export const Top: NextComponentType<NextPageContext, null, TopProps> = (
-  {
-    // recommendBlogs,
-    // latestBlogs,
-    // designBlogs,
-    // frontBlogs,
-    // serverBlogs,
-    // infraBlogs,
-  },
-) => {
+export const Top: NextComponentType<NextPageContext, null, TopProps> = ({
+  recommendBlogs,
+  latestBlogs,
+  // designBlogs,
+  // frontBlogs,
+  // serverBlogs,
+  // infraBlogs,
+}) => {
   return (
     <Wrapper data-testid='top-tpl'>
-      <TopSection></TopSection>
+      <TopSection>
+        <RecommendSection recommendBlogs={recommendBlogs} />
+      </TopSection>
       <AboutSection />
-      {/* <RecommendSection recommendBlogs={recommendBlogs} /> */}
+      <LatestSection latestBlogs={latestBlogs} />
       {/* 横スクロール実装する */}
       {/* <HorizontalScroll blogs={designBlogs} /> */}
     </Wrapper>

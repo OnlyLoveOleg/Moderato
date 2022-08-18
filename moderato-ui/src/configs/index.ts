@@ -20,10 +20,10 @@ export class AppConfig extends BaseConfig {
   }
 }
 
-/** systemのconst的なもの */
+/** blogのdefault config */
 export const DefBlogToImg = {
   design: './default/design.jpg.webp',
   front: './default/front.jpg.webp',
   server: '',
   infra: './default/infra.jpg.webp',
-};
+} as const;

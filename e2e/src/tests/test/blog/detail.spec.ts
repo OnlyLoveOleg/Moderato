@@ -10,7 +10,7 @@ test.describe('/top Page Test.', () => {
     await blogDetailPage.navigate();
   });
 
-  test('/blog/slug  へ遷移ができるか', async () => {
+  test('/blogs/slug  へ遷移ができるか', async () => {
     expect(blogDetailPage.isCurrentPage).toBe(true);
   });
 });

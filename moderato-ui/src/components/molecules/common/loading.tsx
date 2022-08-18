@@ -9,8 +9,11 @@ type Props = {
 const Wrapper = styled.div`
   ${displayFlex({ flexDirection: 'row' })};
   background: ${(props) => props.theme.black};
-  width: 100vw;
+  width: 100%;
   height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
 
   > p {
     color: #121212;

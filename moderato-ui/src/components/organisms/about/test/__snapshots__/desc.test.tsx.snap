@@ -2,7 +2,7 @@
 
 exports[` Check snapshot 1`] = `
 <div
-  className="sc-b43514e3-0 iueuvO"
+  className="sc-e80d70df-0 kXiClh"
 >
   <h2
     className="sc-1ef67e09-0 bWTTkQ desc-title"
@@ -17,12 +17,14 @@ exports[` Check snapshot 1`] = `
     My mission is to write coding as beautifully as design and to make the whole team excited!
   </h3>
   <p
-    className="desc ja"
+    className="sc-21bc2e1b-0 dyIjIH desc ja"
+    id="souseki"
   >
-    千葉出身。都内（銀座）での美容師経験があるソフトウェアエンジニア。モデル撮影のために購入したmacを使っていたらPCの仕組みが気になり始め、気づいたらエンジニアに。人生まるごとクリエイティブだと思っている。人の髪をデザインしていた経験をIT業界へ活かせることはないか日々模索中。
+    千葉出身。都内（銀座）での美容師経験があるウェブエンジニア。モデル撮影のために購入したmacを使っていたらPCの仕組みが気になり始め、気づいたらエンジニアに。人生まるごとクリエイティブだと思っている。人の髪をデザインしていた経験をIT業界へ活かせることはないか日々模索中。
   </p>
   <p
-    className="desc en"
+    className="sc-21bc2e1b-0 dyIjIH desc en"
+    id="souseki2"
   >
     Born in Japan. Software engineer with experience as a beautician in Tokyo (Ginza). When he was using a mac he bought for a model shoot, he started to be interested in how PCs work, and he found himself becoming an engineer. He believes that one's entire life is creative. He is always looking for ways to apply his experience in designing people's hair to the IT industry.
   </p>

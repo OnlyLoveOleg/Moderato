@@ -3,7 +3,7 @@ import { About as AbTpl, Layout } from '@/components/templates';
 
 const About: NextPage = () => {
   return (
-    <Layout>
+    <Layout disableRightClick={true}>
       <AbTpl />
     </Layout>
   );

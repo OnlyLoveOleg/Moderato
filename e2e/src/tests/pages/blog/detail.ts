@@ -6,7 +6,7 @@ import { BasePageModel } from '@/tests/pages/basePage';
  */
 export class BlogDetailPage extends BasePageModel {
   constructor(page: Page) {
-    /** /blog pageが現状で存在しない  */
+    /** /blog pageが現状で存在しないため top start  */
     super(page, '/');
   }
 }

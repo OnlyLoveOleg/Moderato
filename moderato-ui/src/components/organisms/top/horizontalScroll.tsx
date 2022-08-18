@@ -4,7 +4,7 @@ import { Blog } from '@/types/model';
 import styled from 'styled-components';
 const AppGSAP = import('@/libs/animation').then((mod) => new mod.AppGSAP());
 
-export type Props = {
+type Props = {
   blogs: Blog[];
 };
 

@@ -1,12 +1,14 @@
 import { MicroCMSQueries, MicroCMSContentId, MicroCMSDate } from 'microcms-js-sdk';
 import { BaseService } from './_base.service';
-import { Blog, Category } from '@/types/model';
+import { Blog, Category, Tag } from '@/types/model';
 import { IHomeService } from '@/libs/apis/interface';
 
 export class HomeService extends BaseService implements IHomeService {
   private readonly blogEndPoint = 'blogs';
 
   private readonly categoryEndPoint = 'categories';
+
+  private readonly tagEndPoint = 'tags';
 
   public fetchBlogDetail = async (contentId: string): Promise<Blog> => {
     const data = await this.mCMSClient.getListDetail<Blog>({
@@ -59,6 +61,17 @@ export class HomeService extends BaseService implements IHomeService {
     return data.contents;
   };
 
+  public fetchTagContainBlogList = async (
+    tagId: string,
+  ): Promise<(Blog & MicroCMSContentId & MicroCMSDate)[]> => {
+    const limit = 4;
+    const data = await this.mCMSClient.getList<Blog>({
+      endpoint: this.blogEndPoint,
+      queries: { filters: `tags[contains]${tagId}`, orders: '-createdAt', limit },
+    });
+    return data.contents;
+  };
+
   public fetchCategoryDetail = async (contentId: string): Promise<Category> => {
     const data = await this.mCMSClient.getListDetail<Category>({
       endpoint: this.categoryEndPoint,
@@ -84,6 +97,18 @@ export class HomeService extends BaseService implements IHomeService {
   ): Promise<(Category & MicroCMSContentId & MicroCMSDate)[]> => {
     const data = await this.mCMSClient.getList<Category>({
       endpoint: this.categoryEndPoint,
+      queries: { ...queries, limit, offset },
+    });
+    return data.contents;
+  };
+
+  public fetchTagList = async (
+    queries: MicroCMSQueries = {},
+    limit: number = 20,
+    offset: number = 0,
+  ): Promise<(Tag & MicroCMSContentId & MicroCMSDate)[]> => {
+    const data = await this.mCMSClient.getList<Tag>({
+      endpoint: this.tagEndPoint,
       queries: { ...queries, limit, offset },
     });
     return data.contents;

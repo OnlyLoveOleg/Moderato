@@ -1,5 +1,5 @@
 import { MicroCMSQueries, MicroCMSContentId, MicroCMSDate } from 'microcms-js-sdk';
-import { Blog, Category } from '@/types/model';
+import { Blog, Category, Tag } from '@/types/model';
 
 /**
  * @desc Moderato APIs.
@@ -30,11 +30,15 @@ export interface IHomeService {
    */
   fetchLatestBlogList(): Promise<(Blog & MicroCMSContentId & MicroCMSDate)[]>;
   /**
-   * @desc 同じカテゴリーのブログを取得する（createdAt基準）
+   * @desc 同じカテゴリーのブログ一覧を取得する（createdAt基準）
    */
   fetchSameCategoryBlogList(
     categoryId: string,
   ): Promise<(Blog & MicroCMSContentId & MicroCMSDate)[]>;
+  /**
+   * @desc 同じタグが設定されているブログ一覧を取得する（createdAt基準）
+   */
+  fetchTagContainBlogList(tagId: string): Promise<(Blog & MicroCMSContentId & MicroCMSDate)[]>;
   /**
    * @desc カテゴリー詳細を取得する
    * @param contentId
@@ -53,4 +57,12 @@ export interface IHomeService {
     limit?: number,
     offset?: number,
   ): Promise<(Category & MicroCMSContentId & MicroCMSDate)[]>;
+  /**
+   * @desc タグ一覧を取得する
+   */
+  fetchTagList(
+    queries?: MicroCMSQueries,
+    limit?: number,
+    offset?: number,
+  ): Promise<(Tag & MicroCMSContentId & MicroCMSDate)[]>;
 }
