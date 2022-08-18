@@ -5,3 +5,4 @@ import Benchmark from 'benchmark';
 // https://www.wantedly.com/companies/autoro/post_articles/297021
 
 const suite = new Benchmark.Suite();
+console.log(suite);
