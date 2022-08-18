@@ -8,7 +8,7 @@ export default class MyDocument extends Document {
     // nuxt.config.jsで設定しないとlocaleは取れない
     const { locale } = this.props.__NEXT_DATA__;
     return (
-      <Html lang={locale} dir='ltr'>
+      <Html lang={locale ?? 'ja'} dir='ltr'>
         <Head>
           <link
             href='https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;900&display=swap'

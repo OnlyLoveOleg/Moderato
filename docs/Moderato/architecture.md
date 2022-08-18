@@ -80,3 +80,8 @@ reset & baseに関しては利便性を考慮しsassで実装した。
 ## dynamic import 
 
 [参考URL](https://nishinatoshiharu.com/overview-next-dynamic-import/)
+
+## performance
+
+作成したロジックにアイデアが2つ以上ある場合は、計測するなどし判断する
+bundleファイル肥大化についてはanalyzeで見るようにした。
