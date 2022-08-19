@@ -5,6 +5,10 @@ on:
     paths:
       - "moderato-ui/**"
 
+defaults:
+  run:
+    working-directory: moderato-ui
+
 jobs:
   playwright:
     timeout-minutes: 10
@@ -36,12 +40,12 @@ jobs:
       #       ${{ runner.os }}-
 
       - name: Frontend Node setup
-        working-directory: moderato-ui
+        # working-directory: moderato-ui
         run: |
           yarn
 
       - name: E2E test.
-        working-directory: e2e
+        # working-directory: e2e
         run: |
           yarn 
           yarn test

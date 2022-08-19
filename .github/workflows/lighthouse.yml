@@ -5,6 +5,10 @@ on:
     paths:
       - "moderato-ui/**"
 
+defaults:
+  run:
+    working-directory: moderato-ui
+
 jobs:
   lhci:
     name: lighthouse
@@ -35,7 +39,7 @@ jobs:
       #       ${{ runner.os }}-
 
       - name: Create env file
-        working-directory: moderato-ui
+        # working-directory: moderato-ui
         run: |
           echo MICRO_CMS_DOMAIN=$MICRO_CMS_DOMAIN > .env
           echo MICRO_CMS_API_KEY=$MICRO_CMS_API_KEY >> .env
@@ -44,13 +48,13 @@ jobs:
           MICRO_CMS_API_KEY: ${{ secrets.MICRO_CMS_API_KEY }}
 
       - name: Build Apps
-        working-directory: moderato-ui
+        # working-directory: moderato-ui
         run: |
           yarn
           yarn build
 
       - name: Run Lighthouse CI
-        working-directory: moderato-ui
+        # working-directory: moderato-ui
         run: |
           npm install -g @lhci/cli@0.9.x
           lhci autorun

@@ -5,6 +5,10 @@ on:
     paths:
       - "moderato-ui/**"
 
+defaults:
+  run:
+    working-directory: moderato-ui
+
 jobs:
   jest:
     # プロセスが終了しない限り、デフォルトで job は6時間実行される。
@@ -38,7 +42,7 @@ jobs:
       #       ${{ runner.os }}-
 
       - name: jest test
-        working-directory: moderato-ui
+        # working-directory: moderato-ui
         run: |
           yarn
           yarn test
@@ -46,7 +50,7 @@ jobs:
       # ガバレッジレポートを出力する
       - uses: artiomtr/jest-coverage-report-action@v2.0-rc.3
         with:
-          working-directory: moderato-ui
+          # working-directory: moderato-ui
           github-token: ${{ secrets.GITHUB_TOKEN }}
           package-manager: yarn
           test-script: yarn test:coverage

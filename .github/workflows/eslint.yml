@@ -5,6 +5,10 @@ on:
     paths:
       - "moderato-ui/**"
 
+defaults:
+  run:
+    working-directory: moderato-ui
+
 jobs:
   eslint:
     timeout-minutes: 5
@@ -37,7 +41,7 @@ jobs:
       #       ${{ runner.os }}-
 
       - name: eslint check
-        working-directory: moderato-ui
+        # working-directory: moderato-ui
         run: |
           yarn
           yarn eslint
