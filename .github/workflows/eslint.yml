@@ -25,10 +25,11 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Use Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
           cache: npm
+          cache-dependency-path: moderato-ui/yarn.lock
 
       # - name: Cache node_modules
       #   uses: actions/cache@v1
