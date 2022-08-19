@@ -85,3 +85,7 @@ reset & baseに関しては利便性を考慮しsassで実装した。
 
 作成したロジックにアイデアが2つ以上ある場合は、計測するなどし判断する
 bundleファイル肥大化についてはanalyzeで見るようにした。
+
+lighthouse
+[リファレンス](https://github.com/GoogleChrome/lighthouse-ci)
+[参考URL](https://blog.kimizuy.dev/posts/add-lhci-to-nextjs)

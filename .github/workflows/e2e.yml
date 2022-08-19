@@ -5,6 +5,10 @@ on:
     paths:
       - "moderato-ui/**"
 
+defaults:
+  run:
+    working-directory: moderato-ui
+
 jobs:
   playwright:
     timeout-minutes: 10
@@ -20,13 +24,13 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Use Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
 
       - name: Cache node_modules
-        uses: actions/cache@v1
-        id: cache-node-modules
+        uses: actions/cache@v3
+        id: node_modules_cache_id
         with:
           path: ~/.cache/yarn
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
@@ -34,16 +38,11 @@ jobs:
             ${{ runner.os }}-yarn-
             ${{ runner.os }}-
 
-      - name: Frontend Node setup
-        working-directory: moderato-ui
-        run: |
-          yarn
+      - name: Node_modules install
+        run: yarn
 
-      - name: E2E test.
-        working-directory: e2e
-        run: |
-          yarn 
-          yarn test
+      - name: E2E test
+        run: yarn test
         # envはこのアクション（name: E2E test.）のみで有効
         env:
           LOCAL_PUBLIC_URL: http://localhost:3000
