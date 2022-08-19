@@ -28,21 +28,23 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-          cache: npm
-          cache-dependency-path: moderato-ui/yarn.lock
 
-      # - name: Cache node_modules
-      #   uses: actions/cache@v1
-      #   id: cache-node-modules
-      #   with:
-      #     path: ~/.cache/yarn
-      #     key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-      #     restore-keys: |
-      #       ${{ runner.os }}-yarn-
-      #       ${{ runner.os }}-
+      - name: Cache node_modules
+        uses: actions/cache@v3
+        id: node_modules_cache_id
+        with:
+          path: ~/.cache/yarn
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+            ${{ runner.os }}-
+
+      - name: Echo isCache
+        run: echo '${{ toJSON(steps.node_modules_cache_id.outputs) }}'
+
+      - name: Is node_modules install
+        if: ${{ steps.node_modules_cache_id.outputs.cache-hit != 'true' }}
+        run: yarn
 
       - name: eslint check
-        # working-directory: moderato-ui
-        run: |
-          yarn
-          yarn eslint
+        run: yarn eslint
