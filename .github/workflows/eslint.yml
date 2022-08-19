@@ -42,8 +42,8 @@ jobs:
       - name: Echo isCache
         run: echo '${{ toJSON(steps.node_modules_cache_id.outputs) }}'
 
-      - name: Is node_modules install
-        if: ${{ steps.node_modules_cache_id.outputs.cache-hit != 'true' }}
+      # actions/cache@v3効いているため if効かない
+      - name: Node_modules install
         run: yarn
 
       - name: eslint check
