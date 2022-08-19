@@ -52,7 +52,8 @@ jobs:
       # ガバレッジレポートを出力する
       - uses: artiomtr/jest-coverage-report-action@v2.0-rc.3
         with:
-          # working-directory: moderato-ui
+          # usesにはdefaults.run.working-directoryが効かない
+          working-directory: moderato-ui
           github-token: ${{ secrets.GITHUB_TOKEN }}
           package-manager: yarn
           test-script: yarn test:coverage
