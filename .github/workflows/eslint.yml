@@ -42,7 +42,6 @@ jobs:
       - name: Echo isCache
         run: echo '${{ toJSON(steps.node_modules_cache_id.outputs) }}'
 
-      # actions/cache@v3効いているため if効かない
       - name: Node_modules install
         run: yarn
 

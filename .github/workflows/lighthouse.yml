@@ -26,20 +26,21 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-          cache: npm
-          cache-dependency-path: moderato-ui/yarn.lock
-      # - name: Cache node_modules
-      #   uses: actions/cache@v1
-      #   id: cache-node-modules
-      #   with:
-      #     path: ~/.cache/yarn
-      #     key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-      #     restore-keys: |
-      #       ${{ runner.os }}-yarn-
-      #       ${{ runner.os }}-
+
+      - name: Cache node_modules
+        uses: actions/cache@v3
+        id: node_modules_cache_id
+        with:
+          path: ~/.cache/yarn
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+            ${{ runner.os }}-
+
+      - name: Echo isCache
+        run: echo '${{ toJSON(steps.node_modules_cache_id.outputs) }}'
 
       - name: Create env file
-        # working-directory: moderato-ui
         run: |
           echo MICRO_CMS_DOMAIN=$MICRO_CMS_DOMAIN > .env
           echo MICRO_CMS_API_KEY=$MICRO_CMS_API_KEY >> .env
@@ -47,14 +48,13 @@ jobs:
           MICRO_CMS_DOMAIN: ${{ secrets.MICRO_CMS_DOMAIN }}
           MICRO_CMS_API_KEY: ${{ secrets.MICRO_CMS_API_KEY }}
 
+      - name: Node_modules install
+        run: yarn
+
       - name: Build Apps
-        # working-directory: moderato-ui
-        run: |
-          yarn
-          yarn build
+        run: yarn build
 
       - name: Run Lighthouse CI
-        # working-directory: moderato-ui
         run: |
           npm install -g @lhci/cli@0.9.x
           lhci autorun

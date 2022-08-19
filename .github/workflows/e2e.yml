@@ -27,29 +27,22 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-          cache: npm
-          cache-dependency-path: moderato-ui/yarn.lock
 
-      # - name: Cache node_modules
-      #   uses: actions/cache@v1
-      #   id: cache-node-modules
-      #   with:
-      #     path: ~/.cache/yarn
-      #     key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-      #     restore-keys: |
-      #       ${{ runner.os }}-yarn-
-      #       ${{ runner.os }}-
+      - name: Cache node_modules
+        uses: actions/cache@v3
+        id: node_modules_cache_id
+        with:
+          path: ~/.cache/yarn
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+            ${{ runner.os }}-
 
-      - name: Frontend Node setup
-        # working-directory: moderato-ui
-        run: |
-          yarn
+      - name: Node_modules install
+        run: yarn
 
-      - name: E2E test.
-        # working-directory: e2e
-        run: |
-          yarn 
-          yarn test
+      - name: E2E test
+        run: yarn test
         # envはこのアクション（name: E2E test.）のみで有効
         env:
           LOCAL_PUBLIC_URL: http://localhost:3000
