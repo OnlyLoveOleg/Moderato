@@ -3,7 +3,7 @@ import { Blog } from '@/types/model';
 import styled from 'styled-components';
 import Image from 'next/image';
 import Link from 'next/link';
-import { pickThumbnail } from '@/composable/helper';
+import { pickThumbnail } from '@/hooks/helper';
 import { H3 } from '@/components/atoms/heading';
 import { Paragraph } from '@/components/atoms/text';
 import { RectangleButton } from '@/components/atoms/button';

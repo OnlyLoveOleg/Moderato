@@ -1,11 +1,14 @@
 import { NextPage, GetStaticPropsContext, InferGetStaticPropsType, GetStaticPaths } from 'next';
+import { useRouter } from 'next/router';
 import { ParsedUrlQuery } from 'node:querystring';
-import { HomeAPI } from '@/libs/apis';
+import { Meta } from '@/components/molecules/common';
 import { Detail as DetailTpl, Layout } from '@/components/templates';
 
-import 'highlight.js/styles/hybrid.css';
+import { HomeAPI } from '@/libs/apis';
 import { convertHighlight, extractHeading } from '@/libs/parser';
+import { fullPath } from '@/hooks/helper';
 
+import 'highlight.js/styles/hybrid.css';
 interface PathParams extends ParsedUrlQuery {
   slug: string;
 }
@@ -39,10 +42,14 @@ export const getStaticProps = async (context: GetStaticPropsContext<PathParams>)
 type Props = InferGetStaticPropsType<typeof getStaticProps>;
 
 const BlogDetail: NextPage<Props> = ({ blogDetail, sameCategoryBlogs, toc }) => {
+  const { asPath } = useRouter();
   return (
-    <Layout showFooter={true} disableRightClick={true}>
-      <DetailTpl blogDetail={blogDetail} sameCategoryBlogs={sameCategoryBlogs} toc={toc} />
-    </Layout>
+    <>
+      <Meta pageFullPath={fullPath(asPath)} pageAsPath={asPath} />
+      <Layout showFooter={true} disableRightClick={true}>
+        <DetailTpl blogDetail={blogDetail} sameCategoryBlogs={sameCategoryBlogs} toc={toc} />
+      </Layout>
+    </>
   );
 };
 

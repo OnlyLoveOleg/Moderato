@@ -2,7 +2,7 @@ import { NextComponentType, NextPageContext } from 'next';
 import { Blog } from '@/types/model';
 import styled from 'styled-components';
 import { TopSection, MainSection, RelatedSection } from '@/components/organisms/blog/detail';
-import { pickThumbnail } from '@/composable/helper';
+import { pickThumbnail } from '@/hooks/helper';
 import { TableOfContentsType } from '@/libs/parser';
 import { TableContents } from '@/components/molecules/common';
 

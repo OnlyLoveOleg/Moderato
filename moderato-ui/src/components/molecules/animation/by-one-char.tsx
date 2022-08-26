@@ -1,6 +1,6 @@
 import { NextComponentType, NextPageContext } from 'next';
 import styled from 'styled-components';
-import { useByOneChar } from '@/composable/components/molecules';
+import { useByOneChar } from '@/hooks/components/molecules';
 
 export type AnimationByOneCharType = {
   children: React.ReactNode;

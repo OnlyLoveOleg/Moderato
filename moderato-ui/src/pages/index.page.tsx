@@ -1,8 +1,12 @@
 import type { NextPage, InferGetStaticPropsType, GetStaticPropsContext } from 'next';
-import { HomeAPI } from '@/libs/apis';
+import { useRouter } from 'next/router';
 // components
 import { Top as TopTpl, Layout } from '@/components/templates';
+import { Meta } from '@/components/molecules/common';
+// lib
+import { HomeAPI } from '@/libs/apis';
 import { HttpError, UndefinedError } from '@/libs/error/class';
+import { fullPath } from '@/hooks/helper';
 
 // mock
 import {
@@ -64,17 +68,21 @@ const Top: NextPage<Props> = ({
   serverBlogs,
   infraBlogs,
 }) => {
+  const { asPath } = useRouter();
   return (
-    <Layout showFooter={true} disableRightClick={true}>
-      <TopTpl
-        recommendBlogs={recommendBlogs}
-        latestBlogs={latestBlogs}
-        designBlogs={designBlogs}
-        frontBlogs={frontBlogs}
-        serverBlogs={serverBlogs}
-        infraBlogs={infraBlogs}
-      />
-    </Layout>
+    <>
+      <Meta pageFullPath={fullPath(asPath)} pageAsPath={asPath} />
+      <Layout showFooter={true} disableRightClick={true}>
+        <TopTpl
+          recommendBlogs={recommendBlogs}
+          latestBlogs={latestBlogs}
+          designBlogs={designBlogs}
+          frontBlogs={frontBlogs}
+          serverBlogs={serverBlogs}
+          infraBlogs={infraBlogs}
+        />
+      </Layout>
+    </>
   );
 };
 

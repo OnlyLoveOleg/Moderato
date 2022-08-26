@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import styled from 'styled-components';
 import { displayFlex, MediaSP } from '@/styles/styled-components/global';
-import { pickThumbnail } from '@/composable/helper';
+import { pickThumbnail } from '@/hooks/helper';
 import { Category as CategoryTag, IconTag } from '@/components/atoms/tag';
 import { UserIcon } from '@/components/atoms/icon';
 import { H4, H5 } from '@/components/atoms/heading';

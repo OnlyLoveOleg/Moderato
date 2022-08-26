@@ -1,6 +1,6 @@
 import { NextComponentType, NextPageContext } from 'next';
 import styled from 'styled-components';
-import { useCircleBounce } from '@/composable/components/molecules';
+import { useCircleBounce } from '@/hooks/components/molecules';
 
 export type CircleBounceType = {
   id: string;

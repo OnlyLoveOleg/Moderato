@@ -4,7 +4,7 @@ import { ServerStyleSheet } from 'styled-components';
 export default class MyDocument extends Document {
   render(): JSX.Element {
     // html要素にdir属性を指定すると、文書全体の書字方向を示すことができる。
-    // 日本語や英語などの場合は、左から右へ記述するので ltr を指定します。
+    // 日本語や英語などの場合は、左から右へ記述するので ltr を指定する。
     // nuxt.config.jsで設定しないとlocaleは取れない
     const { locale } = this.props.__NEXT_DATA__;
     return (
@@ -19,8 +19,8 @@ export default class MyDocument extends Document {
             rel='stylesheet'
           />
         </Head>
-        <body>
-          <noscript>JavaScriptを有効にしてください。.</noscript>
+        <body id='body'>
+          <noscript>JavaScriptを有効にしてください。</noscript>
           <Main />
           <NextScript />
         </body>

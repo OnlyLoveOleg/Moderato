@@ -2,7 +2,7 @@
  * @desc Utilsには配置できないが、このプロジェクトのみで汎用的なもの。
  */
 
-import { DefBlogToImg } from '@/configs';
+import { DefBlogToImg, AppConfig } from '@/configs';
 import { Blog, Author } from '@/types/model';
 
 export const pickThumbnail = (blog: Blog): string => {
@@ -24,6 +24,11 @@ export const pickThumbnail = (blog: Blog): string => {
 export const pickAuthorThumbnail = (author: Author): string => {
   const thumbnail = author.image.url ?? '/images/about_me.jpg';
   return thumbnail;
+};
+
+export const fullPath = (path: string): string => {
+  const config = new AppConfig();
+  return `${config.publicURL}${path}`;
 };
 
 /**

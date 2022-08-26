@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { NextComponentType, NextPageContext } from 'next';
 import { H2 } from '@/components/atoms/heading';
 import styled from 'styled-components';
-import { handlerFadeDirection } from '@/composable/helper';
+import { handlerFadeDirection } from '@/hooks/helper';
 import { domSelect } from '@/utils/dom';
 import { AppGSAP } from '@/libs/animation';
 import { displayFlex } from '@/styles/styled-components/global';

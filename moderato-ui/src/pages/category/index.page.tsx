@@ -1,6 +1,11 @@
 import type { NextPage, InferGetStaticPropsType, GetStaticPropsContext } from 'next';
+import { useRouter } from 'next/router';
+// components
 import { CategoryTpl, Layout } from '@/components/templates';
+import { Meta } from '@/components/molecules/common';
+// lib
 import { HomeAPI } from '@/libs/apis';
+import { fullPath } from '@/hooks/helper';
 
 /**
  * @desc カテゴリー一覧 page
@@ -31,10 +36,14 @@ type Props = InferGetStaticPropsType<typeof getStaticProps>;
  * @see https://tech.012grp.co.jp/entry/next_dynamicImport
  */
 const Category: NextPage<Props> = ({ categories, primaryCategories }) => {
+  const { asPath } = useRouter();
   return (
-    <Layout showFooter={true}>
-      <CategoryTpl categories={categories} primaryCategories={primaryCategories} />
-    </Layout>
+    <>
+      <Meta pageFullPath={fullPath(asPath)} pageAsPath={asPath} />
+      <Layout showFooter={true}>
+        <CategoryTpl categories={categories} primaryCategories={primaryCategories} />
+      </Layout>
+    </>
   );
 };
 
